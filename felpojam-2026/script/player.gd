@@ -2,25 +2,21 @@ extends Node2D
 class_name player
 
 @onready var anim = get_node("AnimatedSprite2D")
-
+@export var level_control: Node
 @export var hud: Node
-@export var customer_0: Node
-@export var customer_1: Node
-@export var customer_2: Node
 
+var customer_
+var indice_atual: int = 0
 var count_customer: int = 0
-var customer_name: String = "customer0"
-
 
 var error = 0
-
 
 var was_pressed: bool = false
 var key_pressed = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	
 	
 	pass # Replace with function body.
 
@@ -164,7 +160,7 @@ func check_button_pressed():
 		#was_pressed = true
 
 func check_answer():
-	var correct_key = customer_0.get("key")
+	var correct_key = customer_.get("key")
 	var correct: bool = false
 	
 	if(correct_key == key_pressed):
@@ -175,8 +171,8 @@ func check_answer():
 		correct = true
 		hud.add_combo(1)
 		hud.add_coin(coin_)
-		customer_0.positive_feedback()
-		customer_0.rand_key()
+		customer_.positive_feedback()
+		customer_.rand_key()
 		error = 0
 		anim.play("animation_stamp")
 

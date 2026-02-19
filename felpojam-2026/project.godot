@@ -21,7 +21,6 @@ event_customer="*uid://b4doq2l275mjk"
 SceneFactory="*uid://yhmqsrvnr881"
 scene_trigger="*uid://ydy3wvriprpb"
 Fade="*uid://chude1axtvhcv"
-Level="*uid://c8j01ra6rf27o"
 
 [display]
 

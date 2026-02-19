@@ -3,14 +3,14 @@ class_name customer
 var tween: Tween
 var key = ""
 @onready var label_: Label = get_node("key")
-@onready var anim = get_node("animate_customer")
+@onready var anim: AnimatedSprite2D = get_node("animate_customer")
 @export var anim_balloon: AnimatedSprite2D
-var animate: String = ""
+var animate: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	rand_key()
-	
+	await rand_key()
+	create()
 	pass # Replace with function body.
 
 
@@ -54,7 +54,8 @@ func rand_key():
 	pass
 
 func positive_feedback():
-	anim.play("customer_thumb")
+	var positive = "customer_thumb"+str(animate)
+	anim.play(positive)
 	reset_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.set_ease(Tween.EASE_OUT)
@@ -69,5 +70,9 @@ func reset_tween():
 		tween.kill()
 	tween = create_tween()
 
+func create():
+	var idle = "customer_idle"+str(animate)
+	print(animate)
+	anim.play(idle)
 	
 	

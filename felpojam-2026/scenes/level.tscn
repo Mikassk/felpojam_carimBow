@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c8j01ra6rf27o" path="res://script/level.gd" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://c4ol1gtvhq32p" path="res://scenes/player.tscn" id="1_u52ul"]
-[ext_resource type="PackedScene" uid="uid://cnymd4do7fwuj" path="res://scenes/customer.tscn" id="2_36wlx"]
 [ext_resource type="Texture2D" uid="uid://112xsau1vd1" path="res://sprite/GAMEPLAY/CENARIO/BG_GAMEPLAY.png" id="2_olg7q"]
 [ext_resource type="PackedScene" uid="uid://b8xlse4xc3qh0" path="res://scenes/hud.tscn" id="3_dmi07"]
 [ext_resource type="Texture2D" uid="uid://b77bswnrxy37p" path="res://sprite/GAMEPLAY/CENARIO/BALCAO.png" id="4_t1rx8"]
@@ -12,24 +11,15 @@
 [ext_resource type="Script" uid="uid://b5u068qkj3y07" path="res://scenes/light_lamp.gd" id="8_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://dehhpxq5sajux" path="res://sprite/GAMEPLAY/DOCUMENTO.png" id="8_wc255"]
 
-[node name="level" type="Node2D" unique_id=750877181]
+[node name="level" type="Node2D" unique_id=750877181 node_paths=PackedStringArray("player")]
 script = ExtResource("1_mx8sn")
+player = NodePath("player")
 
 [node name="background" type="Sprite2D" parent="." unique_id=1568050219]
 texture = ExtResource("2_olg7q")
 metadata/_edit_lock_ = true
 
-[node name="customer3" parent="." unique_id=1975210611 instance=ExtResource("2_36wlx")]
-position = Vector2(-1333, 125)
-
-[node name="customer2" parent="." unique_id=1638128588 instance=ExtResource("2_36wlx")]
-position = Vector2(-805, 77)
-
-[node name="customer1" parent="." unique_id=375710558 instance=ExtResource("2_36wlx")]
-position = Vector2(-464, 35)
-
-[node name="customer0" parent="." unique_id=501545663 instance=ExtResource("2_36wlx")]
-position = Vector2(-11, -7)
+[node name="customers" type="Node2D" parent="." unique_id=181031381]
 
 [node name="desk" type="Sprite2D" parent="." unique_id=1218875310]
 texture = ExtResource("4_t1rx8")
@@ -53,12 +43,10 @@ metadata/_edit_lock_ = true
 position = Vector2(3, 437)
 texture = ExtResource("8_wc255")
 
-[node name="player" parent="." unique_id=1311702046 node_paths=PackedStringArray("hud", "customer_0", "customer_1", "customer_2") instance=ExtResource("1_u52ul")]
+[node name="player" parent="." unique_id=1311702046 node_paths=PackedStringArray("level_control", "hud") instance=ExtResource("1_u52ul")]
 position = Vector2(84, 314)
+level_control = NodePath("..")
 hud = NodePath("../HUD")
-customer_0 = NodePath("../customer0")
-customer_1 = NodePath("../customer1")
-customer_2 = NodePath("../customer2")
 
 [node name="HUD" parent="." unique_id=1205108318 instance=ExtResource("3_dmi07")]
 anchors_preset = 0
