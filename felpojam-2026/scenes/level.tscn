@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cnoaiuumgi7b5"]
+
+[ext_resource type="Script" uid="uid://c8j01ra6rf27o" path="res://script/level.gd" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://c4ol1gtvhq32p" path="res://scenes/player.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://cnymd4do7fwuj" path="res://scenes/customer.tscn" id="2_36wlx"]
+[ext_resource type="Texture2D" uid="uid://112xsau1vd1" path="res://sprite/GAMEPLAY/CENARIO/BG_GAMEPLAY.png" id="2_olg7q"]
+[ext_resource type="PackedScene" uid="uid://b8xlse4xc3qh0" path="res://scenes/hud.tscn" id="3_dmi07"]
+[ext_resource type="Texture2D" uid="uid://b77bswnrxy37p" path="res://sprite/GAMEPLAY/CENARIO/BALCAO.png" id="4_t1rx8"]
+[ext_resource type="Texture2D" uid="uid://f0w2x7u888h2" path="res://sprite/GAMEPLAY/ITENS_MESA/TINTEIRO.png" id="5_8iemx"]
+[ext_resource type="Texture2D" uid="uid://c87rf0pr74tnp" path="res://sprite/GAMEPLAY/ITENS_MESA/CRISTAL/CRISTAL.png" id="6_64w2a"]
+[ext_resource type="Texture2D" uid="uid://bhck4akhrfr66" path="res://sprite/GAMEPLAY/ITENS_MESA/CRISTAL/CRISTAL_LUZ.png" id="7_fpun6"]
+[ext_resource type="Script" uid="uid://b5u068qkj3y07" path="res://scenes/light_lamp.gd" id="8_t1rx8"]
+[ext_resource type="Texture2D" uid="uid://dehhpxq5sajux" path="res://sprite/GAMEPLAY/DOCUMENTO.png" id="8_wc255"]
+
+[node name="level" type="Node2D" unique_id=750877181]
+script = ExtResource("1_mx8sn")
+
+[node name="background" type="Sprite2D" parent="." unique_id=1568050219]
+texture = ExtResource("2_olg7q")
+metadata/_edit_lock_ = true
+
+[node name="customer3" parent="." unique_id=1975210611 instance=ExtResource("2_36wlx")]
+position = Vector2(-1333, 125)
+
+[node name="customer2" parent="." unique_id=1638128588 instance=ExtResource("2_36wlx")]
+position = Vector2(-805, 77)
+
+[node name="customer1" parent="." unique_id=375710558 instance=ExtResource("2_36wlx")]
+position = Vector2(-464, 35)
+
+[node name="customer0" parent="." unique_id=501545663 instance=ExtResource("2_36wlx")]
+position = Vector2(-11, -7)
+
+[node name="desk" type="Sprite2D" parent="." unique_id=1218875310]
+texture = ExtResource("4_t1rx8")
+
+[node name="tint" type="Sprite2D" parent="." unique_id=1780166327]
+position = Vector2(-402, 379)
+texture = ExtResource("5_8iemx")
+
+[node name="lamp" type="Sprite2D" parent="." unique_id=1445251649]
+position = Vector2(-776, 134)
+texture = ExtResource("6_64w2a")
+metadata/_edit_lock_ = true
+
+[node name="light_lamp" type="Sprite2D" parent="lamp" unique_id=1704694728]
+position = Vector2(-2, -55)
+texture = ExtResource("7_fpun6")
+script = ExtResource("8_t1rx8")
+metadata/_edit_lock_ = true
+
+[node name="document" type="Sprite2D" parent="." unique_id=232666301]
+position = Vector2(3, 437)
+texture = ExtResource("8_wc255")
+
+[node name="player" parent="." unique_id=1311702046 node_paths=PackedStringArray("hud", "customer_0", "customer_1", "customer_2") instance=ExtResource("1_u52ul")]
+position = Vector2(84, 314)
+hud = NodePath("../HUD")
+customer_0 = NodePath("../customer0")
+customer_1 = NodePath("../customer1")
+customer_2 = NodePath("../customer2")
+
+[node name="HUD" parent="." unique_id=1205108318 instance=ExtResource("3_dmi07")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -945.0
+offset_top = -532.0
+offset_right = -945.0
+offset_bottom = -532.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=57593822]
+ignore_rotation = false
+metadata/_edit_lock_ = true

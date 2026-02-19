@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b8xlse4xc3qh0"]
+
+[ext_resource type="Script" uid="uid://dsicbbbg1rejm" path="res://hud.gd" id="1_o8u2p"]
+[ext_resource type="FontFile" uid="uid://d380c3w2t7stk" path="res://font/Quintessential-Regular.ttf" id="2_nhyt6"]
+[ext_resource type="Script" uid="uid://cg3vpa4et72vn" path="res://script/HUD/count_coin.gd" id="2_o8u2p"]
+[ext_resource type="Script" uid="uid://c8hx3cu1fjasd" path="res://script/HUD/anim_coin.gd" id="3_pvgpj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nhyt6"]
+load_path = "res://.godot/imported/coin.png-360c1711dbb5bc82d60f140a18e6f485.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvgpj"]
+font = ExtResource("2_nhyt6")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_ry2h7"]
+font = ExtResource("2_nhyt6")
+font_size = 30
+font_color = Color(1, 0.654902, 0.09803922, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6fi6k"]
+load_path = "res://.godot/imported/combo.png-1bfc9537dd6953dd9dd11dd612b2bedb.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_6fi6k"]
+font_size = 50
+
+[node name="HUD" type="Control" unique_id=1205108318 node_paths=PackedStringArray("count_coin", "anim_coin", "anim_combo", "spr_combo")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o8u2p")
+count_coin = NodePath("count_coin")
+anim_coin = NodePath("anim_coin")
+anim_combo = NodePath("anim_combo")
+spr_combo = NodePath("spr_combo")
+
+[node name="image_coin" type="TextureRect" parent="." unique_id=746993559]
+layout_mode = 0
+offset_right = 135.0
+offset_bottom = 139.0
+texture = SubResource("CompressedTexture2D_nhyt6")
+
+[node name="count_coin" type="Label" parent="." unique_id=798221600]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 51.0
+offset_right = 196.0
+offset_bottom = 98.0
+text = "00"
+label_settings = SubResource("LabelSettings_pvgpj")
+script = ExtResource("2_o8u2p")
+
+[node name="anim_coin" type="Label" parent="." unique_id=1070301874]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 24.0
+offset_right = 314.0
+offset_bottom = 71.0
+text = "valor"
+label_settings = SubResource("LabelSettings_ry2h7")
+script = ExtResource("3_pvgpj")
+
+[node name="spr_combo" type="Sprite2D" parent="." unique_id=1978386929]
+position = Vector2(415, 254)
+texture = SubResource("CompressedTexture2D_6fi6k")
+offset = Vector2(0, 10)
+
+[node name="anim_combo" type="Label" parent="." unique_id=793226557]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 205.0
+offset_right = 464.0
+offset_bottom = 314.0
+pivot_offset = Vector2(92, 55)
+text = "+30"
+label_settings = SubResource("LabelSettings_6fi6k")
+horizontal_alignment = 1
+vertical_alignment = 1

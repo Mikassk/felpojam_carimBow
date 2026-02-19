@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bj3wgusnsiw5m"]
+
+[ext_resource type="Texture2D" uid="uid://dvl62atw0ybks" path="res://sprite/wp5940277.webp" id="1_2owmf"]
+[ext_resource type="FontFile" uid="uid://cuaol2805o168" path="res://font/AlmendraSC-Regular.ttf" id="2_f2sqd"]
+[ext_resource type="Script" uid="uid://c3ct13fsfkvqb" path="res://script/HUD/button.gd" id="3_mrvhr"]
+[ext_resource type="Script" uid="uid://lokob0rhc5nv" path="res://script/HUD/title.gd" id="5_eiryn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgacs"]
+bg_color = Color(0.7882353, 0.52156866, 0.22745098, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3cv7"]
+bg_color = Color(0.6745098, 0.38431373, 0.22745098, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bk63"]
+bg_color = Color(0.7882353, 0.6745098, 0.28627452, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y1dc"]
+font = ExtResource("2_f2sqd")
+font_size = 200
+font_color = Color(0.87058824, 0.7411765, 0.23529412, 1)
+outline_size = 20
+outline_color = Color(0.38431373, 0.03137255, 0, 1)
+shadow_size = 5
+
+[node name="initial_screen" type="Control" unique_id=1438684693]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="." unique_id=1058444232]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_2owmf")
+
+[node name="Button" type="Button" parent="." unique_id=1124634579]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.003125
+anchor_top = -0.012037037
+anchor_right = -0.003125
+anchor_bottom = -0.012037037
+offset_left = 780.0
+offset_top = 713.0
+offset_right = 1176.0
+offset_bottom = 836.0
+pivot_offset = Vector2(199, 62)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_f2sqd")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_rgacs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3cv7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1bk63")
+text = "Jogar"
+script = ExtResource("3_mrvhr")
+
+[node name="title" type="Label" parent="." unique_id=1496992337]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -476.0
+offset_top = -119.5
+offset_right = 476.0
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CARIMBÓU"
+label_settings = SubResource("LabelSettings_1y1dc")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_eiryn")

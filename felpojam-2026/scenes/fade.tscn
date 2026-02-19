@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://chude1axtvhcv"]
+
+[ext_resource type="Script" uid="uid://chgv88v3ufn5a" path="res://script/HUD/fade.gd" id="1_nukjo"]
+
+[node name="fade" type="CanvasLayer" unique_id=1948481019 node_paths=PackedStringArray("fade_color")]
+script = ExtResource("1_nukjo")
+fade_color = NodePath("fade_color")
+
+[node name="fade_color" type="ColorRect" parent="." unique_id=1774618473]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.00063774333, 0.027099105, 0.014151945, 1)
