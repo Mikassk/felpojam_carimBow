@@ -43,9 +43,9 @@ func animation_combo():
 	tween.parallel().tween_property($spr_combo,"scale",Vector2.ONE,0.4)
 	
 	
-func add_combo(valor: int):
-	if valor != 0:
-		combo+=valor
+func add_combo(value: int):
+	if value != 0:
+		combo+=value
 		anim_combo.text = ("COMBO x"+str(combo))
 		animation_combo()
 	else:
@@ -57,9 +57,9 @@ func add_combo(valor: int):
 		combo = 0
 	
 
-func add_coin(valor: int):
-	anim_coin.text = ("+"+str(valor+(2*(combo-1))))
+func add_coin(value: int):
+	anim_coin.text = ("+"+str(value+(2*(combo-1))))
 	anim_coin.animation()
-	coin += valor + (2*combo)
+	coin += value + (2*combo)
 	count_coin.text = (str(coin))
 	animation_coin()

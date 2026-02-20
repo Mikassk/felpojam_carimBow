@@ -5,7 +5,9 @@ var key = ""
 @onready var label_: Label = get_node("key")
 @onready var anim: AnimatedSprite2D = get_node("animate_customer")
 @export var anim_balloon: AnimatedSprite2D
+
 var animate: int = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -62,6 +64,7 @@ func positive_feedback():
 	tween.tween_property(self,"scale",Vector2(1.1,1.1),0.4)
 	tween.tween_property(self,"scale",Vector2.ONE,0.4)
 	
+	
 func negative_feedback():
 	pass
 	
@@ -74,5 +77,15 @@ func create():
 	var idle = "customer_idle"+str(animate)
 	print(animate)
 	anim.play(idle)
+	
+func change_position(x_: int, y_:int):
+	reset_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self,"position:x",x_,0.8)
+	tween.tween_property(self,"position:y",y_,0.8)
+	
+	
+
 	
 	

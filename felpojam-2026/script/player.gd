@@ -172,10 +172,11 @@ func check_answer():
 		hud.add_combo(1)
 		hud.add_coin(coin_)
 		customer_.positive_feedback()
-		customer_.rand_key()
 		error = 0
 		anim.play("animation_stamp")
-
+		
+		level_control._next_customer()
+		
 		
 	else:
 		hud.add_combo(0)
