@@ -23,7 +23,7 @@ load_path = "res://.godot/imported/combo.png-1bfc9537dd6953dd9dd11dd612b2bedb.ct
 [sub_resource type="LabelSettings" id="LabelSettings_6fi6k"]
 font_size = 50
 
-[node name="HUD" type="Control" unique_id=1205108318 node_paths=PackedStringArray("count_coin", "anim_coin", "anim_combo", "spr_combo")]
+[node name="HUD" type="Control" unique_id=1205108318 node_paths=PackedStringArray("count_coin", "anim_coin", "anim_combo", "spr_combo", "timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +35,7 @@ count_coin = NodePath("count_coin")
 anim_coin = NodePath("anim_coin")
 anim_combo = NodePath("anim_combo")
 spr_combo = NodePath("spr_combo")
+timer = NodePath("Timer")
 
 [node name="image_coin" type="TextureRect" parent="." unique_id=746993559]
 layout_mode = 0
@@ -78,3 +79,5 @@ text = "+30"
 label_settings = SubResource("LabelSettings_6fi6k")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1621952771]

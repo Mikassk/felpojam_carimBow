@@ -5,12 +5,16 @@ class_name hud
 @export var anim_coin: Label
 @export var anim_combo: Label
 @export var spr_combo: Sprite2D
+@export var timer: Timer
 
 var coin: int = 0 
 var combo: int = 0
+var timer_total := 3
+var timer_value = timer_total
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	timer.timeout.connect(_on_Timer_timeout)
 	count_coin.text = (str(coin))
 	anim_combo.modulate.a = 0.0
 	spr_combo.modulate.a = 0.0
@@ -45,16 +49,14 @@ func animation_combo():
 	
 func add_combo(value: int):
 	if value != 0:
+		timer.stop()
+		timer_value = timer_total
+		timer.start()
 		combo+=value
 		anim_combo.text = ("COMBO x"+str(combo))
 		animation_combo()
 	else:
-		var tween = create_tween()
-		tween.set_trans(Tween.TRANS_SINE)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.tween_property($anim_combo,"modulate:a",0.0,0.3)
-		tween.parallel().tween_property($spr_combo,"modulate:a",0.0,0.3)
-		combo = 0
+		_end_combo()
 	
 
 func add_coin(value: int):
@@ -63,3 +65,19 @@ func add_coin(value: int):
 	coin += value + (2*combo)
 	count_coin.text = (str(coin))
 	animation_coin()
+	
+func _on_Timer_timeout():
+	if timer_value > 0:
+		timer_value -= 1
+	else:
+		timer.stop()
+		_end_combo()
+	pass
+
+func _end_combo():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property($anim_combo,"modulate:a",0.0,0.3)
+	tween.parallel().tween_property($spr_combo,"modulate:a",0.0,0.3)
+	combo = 0

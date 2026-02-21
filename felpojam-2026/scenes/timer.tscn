@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://4h7fcqc8cv4x"]
+
+[ext_resource type="Script" uid="uid://ce878nvu76heb" path="res://script/timer_control.gd" id="1_5lxq6"]
+[ext_resource type="FontFile" uid="uid://b62xtb6dqwjxc" path="res://font/Roboto-Black.ttf" id="2_g5y8c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bi5oq"]
+font = ExtResource("2_g5y8c")
+font_size = 40
+
+[node name="timer_control" type="Node2D" unique_id=1202839047 node_paths=PackedStringArray("timer_label", "timer")]
+script = ExtResource("1_5lxq6")
+timer_label = NodePath("timer__update")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=1654388236]
+autostart = true
+
+[node name="timer__update" type="Label" parent="." unique_id=1336419260]
+offset_right = 239.0
+offset_bottom = 98.0
+text = "00:00"
+label_settings = SubResource("LabelSettings_bi5oq")
+horizontal_alignment = 1
+vertical_alignment = 1

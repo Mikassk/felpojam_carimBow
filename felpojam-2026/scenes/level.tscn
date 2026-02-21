@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ol1gtvhq32p" path="res://scenes/player.tscn" id="1_u52ul"]
 [ext_resource type="Texture2D" uid="uid://112xsau1vd1" path="res://sprite/GAMEPLAY/CENARIO/BG_GAMEPLAY.png" id="2_olg7q"]
 [ext_resource type="PackedScene" uid="uid://b8xlse4xc3qh0" path="res://scenes/hud.tscn" id="3_dmi07"]
+[ext_resource type="PackedScene" uid="uid://4h7fcqc8cv4x" path="res://scenes/timer.tscn" id="3_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://b77bswnrxy37p" path="res://sprite/GAMEPLAY/CENARIO/BALCAO.png" id="4_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://f0w2x7u888h2" path="res://sprite/GAMEPLAY/ITENS_MESA/TINTEIRO.png" id="5_8iemx"]
 [ext_resource type="Texture2D" uid="uid://c87rf0pr74tnp" path="res://sprite/GAMEPLAY/ITENS_MESA/CRISTAL/CRISTAL.png" id="6_64w2a"]
@@ -18,6 +19,9 @@ player = NodePath("player")
 [node name="background" type="Sprite2D" parent="." unique_id=1568050219]
 texture = ExtResource("2_olg7q")
 metadata/_edit_lock_ = true
+
+[node name="timer_control" parent="." unique_id=1202839047 instance=ExtResource("3_t1rx8")]
+position = Vector2(-119, -555)
 
 [node name="customers" type="Node2D" parent="." unique_id=181031381]
 

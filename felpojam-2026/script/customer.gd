@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 	pass
 	
 func rand_key():
+	var rand_ = randi_range(0,3) #types of character
+	animate = rand_
 	var rand = randi_range(5,9)
 	var frame_ = 0
 	match rand:
@@ -83,7 +85,7 @@ func change_position(x_: int, y_:int):
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self,"position:x",x_,0.8)
-	tween.tween_property(self,"position:y",y_,0.8)
+	tween.parallel().tween_property(self,"position:y",y_,0.8)
 	
 	
 
