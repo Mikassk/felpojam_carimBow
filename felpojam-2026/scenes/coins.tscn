@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d1xu6g8h2xw31"]
+
+[ext_resource type="Script" uid="uid://bwfp66gcrvlg6" path="res://script/coins_go_hud.gd" id="1_0wmmx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o4aag"]
+load_path = "res://.godot/imported/MOEDA_MESA.png-fc483478d5f099cb7d32f2264e062985.ctex"
+
+[node name="coins" type="Node2D" unique_id=438211938]
+script = ExtResource("1_0wmmx")
+
+[node name="sprCoin" type="Sprite2D" parent="." unique_id=1462306814]
+scale = Vector2(0.8, 0.8)
+texture = SubResource("CompressedTexture2D_o4aag")

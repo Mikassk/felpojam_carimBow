@@ -1,28 +1,44 @@
 extends Node2D
 class_name customer
 var tween: Tween
-var key = ""
+
 @onready var label_: Label = get_node("key")
 @onready var anim: AnimatedSprite2D = get_node("animate_customer")
 @export var anim_balloon: AnimatedSprite2D
 
-var animate: int = 0
+signal customer_exited
 
+var animate: int = 0
+var last_animate: int = 0
+var key = ""
+var anim_thumb = "customer_thumb"+str(animate)
+var anim_idle = "npc_idle"+str(animate)
+
+var initiate: bool = false
+var change_balloon: bool = false
+
+var off_set_x: Array = [-200,80,80,30,30]
+var off_set_y: Array = [20,150,80,80,0]
+
+var current_npc_index: Array = []
+var index_sprite: int
+
+var pos: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await rand_key()
-	create()
-	pass # Replace with function body.
+	rand_key()
+	#rand_customer()
+	#set_sprite()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
+#função do balão dos pedidos
 func rand_key():
-	var rand_ = randi_range(0,3) #types of character
-	animate = rand_
 	var rand = randi_range(5,9)
 	var frame_ = 0
 	match rand:
@@ -51,21 +67,32 @@ func rand_key():
 		9:
 			key = "key_T"
 			frame_ = 4
-	var str_ = key.replace("key_","")
-	anim_balloon.frame = frame_
+	#var str_ = key.replace("key_","")
+	var anim_frame = "balloon_icon"+str(frame_)
+	anim_balloon.play(anim_frame)
+	if initiate == false:
+		initiate = true
+	else:
+		await get_tree().create_timer(0.5).timeout
+		#rand_customer()
+		set_sprite()
 	#label_.text = ("press "+str_)
 
-	pass
+
 
 func positive_feedback():
-	var positive = "customer_thumb"+str(animate)
-	anim.play(positive)
-	reset_tween()
+	
+	#anim.play(anim_thumb)
+	tween = create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self,"scale",Vector2(1.1,1.1),0.4)
-	tween.tween_property(self,"scale",Vector2.ONE,0.4)
 	
+	tween.tween_property(self,"scale",Vector2.ONE,0.4).set_delay(0.0)
+	
+	
+
+
 	
 func negative_feedback():
 	pass
@@ -75,19 +102,34 @@ func reset_tween():
 		tween.kill()
 	tween = create_tween()
 
-func create():
-	var idle = "customer_idle"+str(animate)
-	print(animate)
-	anim.play(idle)
+func set_sprite():
+	anim_idle = "npc_idle"+str(index_sprite)
+	anim.play(anim_idle)
+	var x_ = off_set_x[index_sprite]
+	var y_ = off_set_y[index_sprite]
+	anim.offset = Vector2(x_,y_)
 	
 func change_position(x_: int, y_:int):
 	reset_tween()
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self,"position:x",x_,0.8)
-	tween.parallel().tween_property(self,"position:y",y_,0.8)
+	tween.tween_property(self,"position:x",x_,0.7)
+	tween.parallel().tween_property(self,"position:y",y_,0.7)
+	await get_tree().create_timer(0.3).timeout
+	if change_balloon:
+		rand_key()
+		change_balloon = false
+	scale = Vector2.ONE
 	
-	
+func final_position(x_: int, y_:int):
+	emit_signal("customer_exited")
+	reset_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self,"position:x",x_,1.0)
+	await tween.parallel().tween_property(self,"position:y",y_,1.0).finished
+	queue_free()
+
 
 	
 	

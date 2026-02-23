@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://vrp31i1k3mtv" path="res://script/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://dnbu3md2iiyrl" path="res://sprite/animation_stamp.png" id="2_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://hunqsjuk6jiq" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_00.png" id="3_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://cxvrwa62a8k7i" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_01.png" id="4_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://b5052cvyq7j1c" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_02.png" id="5_jej6c"]
+[ext_resource type="Texture2D" uid="uid://dd0y0qqmc7ec0" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_03.png" id="6_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://bjo71yem2omro" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_04.png" id="7_oprun"]
+[ext_resource type="Texture2D" uid="uid://dklvrr720nm4t" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_05.png" id="8_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://dmy3st8lbco4q" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_06.png" id="9_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://carl4tl2bkwgp" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_07.png" id="10_fulsm"]
+[ext_resource type="Texture2D" uid="uid://4sld5c6h8l81" path="res://sprite/GAMEPLAY/MAO_CARIMBANDO/MAO_CARIMBANDO_08.png" id="11_4r5pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvtld"]
 atlas = ExtResource("2_hjaqi")
@@ -22,6 +31,42 @@ region = Rect2(420, 0, 139, 139)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hp4bs"]
 atlas = ExtResource("2_hjaqi")
 region = Rect2(560, 0, 139, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ail"]
+atlas = ExtResource("4_3v2ag")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
+atlas = ExtResource("5_jej6c")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("6_f1ej7")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("7_oprun")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("8_a8ls1")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("9_qfm1y")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("10_fulsm")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("11_4r5pv")
+region = Rect2(0, 0, 1920, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g2vtq"]
 animations = [{
@@ -47,6 +92,38 @@ animations = [{
 "loop": false,
 "name": &"animation_stamp",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60mlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ail")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a38lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujl30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf23h")
+}],
+"loop": false,
+"name": &"hand_stamp",
+"speed": 15.0
 }]
 
 [node name="player" type="Node2D" unique_id=1311702046]
@@ -54,4 +131,4 @@ script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=228600575]
 sprite_frames = SubResource("SpriteFrames_g2vtq")
-animation = &"animation_stamp"
+animation = &"hand_stamp"

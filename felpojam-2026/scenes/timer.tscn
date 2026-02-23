@@ -16,6 +16,7 @@ timer = NodePath("Timer")
 autostart = true
 
 [node name="timer__update" type="Label" parent="." unique_id=1336419260]
+visible = false
 offset_right = 239.0
 offset_bottom = 98.0
 text = "00:00"

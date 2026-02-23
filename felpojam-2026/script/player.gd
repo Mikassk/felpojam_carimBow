@@ -4,8 +4,8 @@ class_name player
 @onready var anim = get_node("AnimatedSprite2D")
 @export var level_control: Node
 @export var hud: Node
-
-var customer_
+@export var stamp: AnimatedSprite2D
+var customer_:Node2D = null
 var indice_atual: int = 0
 var count_customer: int = 0
 
@@ -14,6 +14,9 @@ var error = 0
 var was_pressed: bool = false
 var key_pressed = ""
 
+var can_pressed: bool = true
+
+var frame_: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -23,6 +26,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#if was_pressed == false:
+		#check_button_pressed()
+	#else:
+		#if Input.is_action_just_pressed("key_space"):
+			#
+			#check_answer()
+			#was_pressed = false
+	#pass
+	pass
+
+func _input(event: InputEvent) -> void:
 	if was_pressed == false:
 		check_button_pressed()
 	else:
@@ -35,23 +49,23 @@ func _process(delta: float) -> void:
 func check_button_pressed():
 	
 	if Input.is_action_just_pressed("key_1"):
-		print("1")
+
 		key_pressed = "key_1"
 		was_pressed = true
 	if Input.is_action_just_pressed("key_2"):
-		print("2")
+
 		key_pressed = "key_2"
 		was_pressed = true
 	if Input.is_action_just_pressed("key_3"):
-		print("3")
+
 		key_pressed = "key_3"
 		was_pressed = true
 	if Input.is_action_just_pressed("key_4"):
-		print("4")
+
 		key_pressed = "key_4"
 		was_pressed = true
 	if Input.is_action_just_pressed("key_5"):
-		print("5")
+
 		key_pressed = "key_5"
 		was_pressed = true
 	if Input.is_action_just_pressed("key_6"):
@@ -70,25 +84,30 @@ func check_button_pressed():
 		key_pressed = "key_0"
 		was_pressed = true
 	if Input.is_action_just_pressed("key_Q"):
-		print("Q")
+
 		key_pressed = "key_Q"
 		was_pressed = true
+		frame_ = 1
 	if Input.is_action_just_pressed("key_W"):
-		print("W")
+	
 		key_pressed = "key_W"
 		was_pressed = true
+		frame_ = 2
 	if Input.is_action_just_pressed("key_E"):
-		print("E")
+		
 		key_pressed = "key_E"
 		was_pressed = true
+		frame_ = 3
 	if Input.is_action_just_pressed("key_R"):
-		print("R")
+		
 		key_pressed = "key_R"
 		was_pressed = true
+		frame_ = 4
 	if Input.is_action_just_pressed("key_T"):
-		print("T")
+		
 		key_pressed = "key_T"
 		was_pressed = true
+		frame_ = 5
 	if Input.is_action_just_pressed("key_Y"):
 		key_pressed = "key_Y"
 		was_pressed = true
@@ -160,28 +179,35 @@ func check_button_pressed():
 		#was_pressed = true
 
 func check_answer():
-	var correct_key = customer_.get("key")
-	var correct: bool = false
+	print(can_pressed)
+	if can_pressed == true:
+		var correct_key = customer_.get("key")
+		var correct: bool = false
+		
+		if(correct_key == key_pressed):
+			var total = 3
+			var coin_ = 3 - error
+			if coin_ <= 0:
+				coin_ = 1
+			correct = true
+			hud.add_combo(1)
+			hud.add_coin(coin_)
+			customer_.positive_feedback()
+			error = 0
+			anim.play("hand_stamp")
+			var anim_stamp = "stamp"+str(frame_)
+			await get_tree().create_timer(0.4).timeout
+			stamp.play(anim_stamp)
+			
+			level_control._next_customer()
+		else:
+			hud.add_combo(0)
+			error+=1
+		key_pressed = ""
+
+func connect_customer():
+	customer_.customer_exited.connect(_on_customer_exited)
 	
-	if(correct_key == key_pressed):
-		var total = 10
-		var coin_ = 10 - error
-		if coin_ <= 0:
-			coin_ = 1
-		correct = true
-		hud.add_combo(1)
-		hud.add_coin(coin_)
-		customer_.positive_feedback()
-		error = 0
-		anim.play("animation_stamp")
-		
-		level_control._next_customer()
-		
-		
-	else:
-		hud.add_combo(0)
-		error+=1
-	key_pressed = ""
-	print(correct)
-	
+func _on_customer_exited():
+	can_pressed = false
 	
