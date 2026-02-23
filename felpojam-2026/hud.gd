@@ -180,6 +180,6 @@ func _get_coins():
 	tween.tween_property($anim_get_coin,"modulate:a",1.0,0.5)
 	$collision_area.can_pressed = true
 	
-	
+func 
 	
 	

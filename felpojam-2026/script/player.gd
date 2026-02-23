@@ -41,10 +41,11 @@ func _input(event: InputEvent) -> void:
 	if was_pressed == false:
 		check_button_pressed()
 	else:
-		if Input.is_action_just_pressed("key_space"):
-			
-			check_answer()
-			was_pressed = false
+		if can_pressed == true:
+			if Input.is_action_just_pressed("key_space"):
+				
+				check_answer()
+				was_pressed = false
 	pass
 
 func check_button_pressed():

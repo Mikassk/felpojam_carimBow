@@ -1,5 +1,5 @@
 extends Node2D
-var timer_max:= 10
+var timer_max:= 30
 var timer_total = timer_max
 
 @export var timer_label: Label
@@ -38,10 +38,11 @@ func _update_label():
 	timer_label.text = "%02d:%02d" % [min_, sec_]
 	
 func _timer_is_over():
+	player.can_pressed = false
 	level_control._go_away()
 	await get_tree().create_timer(1.0).timeout
 	hud._get_coins()
-	player.can_pressed = false
+	
 	#level_control.restart_day()
 	
 func _timer_start():
