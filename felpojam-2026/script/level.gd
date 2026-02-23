@@ -63,8 +63,9 @@ func _next_customer():
 	if index >= customer_array.size(): 
 		index = 0
 	var act_customer = customer_array[index]
-	player.customer_ = act_customer
-	player.connect_customer()
+	if is_instance_valid(act_customer):
+		player.customer_ = act_customer
+		#player.connect_customer()
 	#fim atualizar o npc atual
 
 	#randomizar o index e retirar os que ja estao em tela
@@ -118,6 +119,7 @@ func _go_away():
 		var new_customer = customer_array[changed_index]
 		var x_ = -1415
 		var y_ = 126
+		print(new_customer)
 		new_customer.final_position(x_,y_)
 	
 #reinicia a fase depois que acaba o tempo

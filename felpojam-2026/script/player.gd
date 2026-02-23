@@ -5,6 +5,7 @@ class_name player
 @export var level_control: Node
 @export var hud: Node
 @export var stamp: AnimatedSprite2D
+@export var document: Sprite2D
 var customer_:Node2D = null
 var indice_atual: int = 0
 var count_customer: int = 0
@@ -194,20 +195,21 @@ func check_answer():
 			hud.add_coin(coin_)
 			customer_.positive_feedback()
 			error = 0
+			anim.frame = 0
 			anim.play("hand_stamp")
 			var anim_stamp = "stamp"+str(frame_)
 			await get_tree().create_timer(0.4).timeout
 			stamp.play(anim_stamp)
-			
+			document.start_anim()
 			level_control._next_customer()
 		else:
 			hud.add_combo(0)
 			error+=1
 		key_pressed = ""
 
-func connect_customer():
-	customer_.customer_exited.connect(_on_customer_exited)
-	
-func _on_customer_exited():
-	can_pressed = false
+#func connect_customer():
+	#customer_.customer_exited.connect(_on_customer_exited)
+	#
+#func _on_customer_exited():
+	#can_pressed = false
 	

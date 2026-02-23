@@ -116,10 +116,15 @@ func add_coin(value: int):
 	
 	anim_coin_table()
 func add_current_coin_to_coin():
+	var speed = 0.03
+	if current_coin > 150 && current_coin < 350:
+		speed = 0.01
+	elif current_coin >= 350:
+		speed = 0.007
 	for i in current_coin:
 		coin+=1
 		count_coin.text = (str(coin))
-		await get_tree().create_timer(0.03).timeout
+		await get_tree().create_timer(speed).timeout
 	current_coin = 0
 	await get_tree().create_timer(2.0).timeout
 	emit_signal("coin_animation_finished")

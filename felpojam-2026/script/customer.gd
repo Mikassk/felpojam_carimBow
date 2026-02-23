@@ -110,7 +110,7 @@ func set_sprite():
 	anim.offset = Vector2(x_,y_)
 	
 func change_position(x_: int, y_:int):
-	reset_tween()
+	tween = create_tween()
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self,"position:x",x_,0.7)
@@ -123,11 +123,11 @@ func change_position(x_: int, y_:int):
 	
 func final_position(x_: int, y_:int):
 	emit_signal("customer_exited")
-	reset_tween()
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self,"position:x",x_,1.0)
-	await tween.parallel().tween_property(self,"position:y",y_,1.0).finished
+	var tween_ = create_tween()
+	tween_.set_trans(Tween.TRANS_BACK)
+	tween_.set_ease(Tween.EASE_IN_OUT)
+	tween_.tween_property(self,"position:x",x_,1.0)
+	await tween_.parallel().tween_property(self,"position:y",y_,1.0).finished
 	queue_free()
 
 

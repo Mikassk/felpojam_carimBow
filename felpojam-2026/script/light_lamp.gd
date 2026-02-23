@@ -19,7 +19,7 @@ func anim_light_():
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self,"modulate:a",0.7,1.5)
+	tween.tween_property(self,"modulate:a",0.6,1.5)
 	tween.tween_callback(anim_light)
 	
 func anim_light():

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b5u068qkj3y07" path="res://script/light_lamp.gd" id="8_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://dehhpxq5sajux" path="res://sprite/GAMEPLAY/DOCUMENTO.png" id="8_wc255"]
 [ext_resource type="Texture2D" uid="uid://b2rae8l205xi6" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_ESPADA.png" id="10_arp2o"]
+[ext_resource type="Script" uid="uid://27aq0jeqglhf" path="res://script/HUD/document_animation.gd" id="10_ux5qa"]
 [ext_resource type="Texture2D" uid="uid://bxb53m3gll2q3" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_SAQUINHO.png" id="11_ux5qa"]
 [ext_resource type="Texture2D" uid="uid://bwwtowkkputp0" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_MONSTRO.png" id="12_82cfe"]
 [ext_resource type="Texture2D" uid="uid://btscyadsdweis" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_CASA.png" id="13_gunhw"]
@@ -98,10 +99,11 @@ hud = NodePath("HUD")
 texture = ExtResource("2_olg7q")
 metadata/_edit_lock_ = true
 
-[node name="timer_control" parent="." unique_id=1202839047 node_paths=PackedStringArray("level_control", "hud") instance=ExtResource("3_t1rx8")]
+[node name="timer_control" parent="." unique_id=1202839047 node_paths=PackedStringArray("level_control", "hud", "player") instance=ExtResource("3_t1rx8")]
 position = Vector2(-119, -555)
 level_control = NodePath("..")
 hud = NodePath("../HUD")
+player = NodePath("../player")
 
 [node name="customers" type="Node2D" parent="." unique_id=181031381]
 
@@ -113,9 +115,9 @@ position = Vector2(-402, 379)
 texture = ExtResource("5_8iemx")
 
 [node name="lamp" type="Sprite2D" parent="." unique_id=1445251649]
-position = Vector2(-776, 134)
+position = Vector2(-782, 186)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_64w2a")
-metadata/_edit_lock_ = true
 
 [node name="light_lamp" type="Sprite2D" parent="lamp" unique_id=1704694728]
 position = Vector2(-2, -55)
@@ -132,6 +134,12 @@ position = Vector2(103, 341)
 sprite_frames = SubResource("SpriteFrames_xy2fk")
 animation = &"stamp0"
 
+[node name="document1" type="Sprite2D" parent="." unique_id=1763536571 node_paths=PackedStringArray("stamp")]
+position = Vector2(26, 755)
+texture = ExtResource("8_wc255")
+script = ExtResource("10_ux5qa")
+stamp = NodePath("../stamp")
+
 [node name="HUD" parent="." unique_id=1205108318 instance=ExtResource("3_dmi07")]
 anchors_preset = 0
 anchor_right = 0.0
@@ -143,10 +151,11 @@ offset_bottom = -540.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="player" parent="." unique_id=1311702046 node_paths=PackedStringArray("level_control", "hud", "stamp") instance=ExtResource("1_u52ul")]
+[node name="player" parent="." unique_id=1311702046 node_paths=PackedStringArray("level_control", "hud", "stamp", "document") instance=ExtResource("1_u52ul")]
 level_control = NodePath("..")
 hud = NodePath("../HUD")
 stamp = NodePath("../stamp")
+document = NodePath("../document1")
 metadata/_edit_lock_ = true
 
 [node name="popup" type="Node2D" parent="." unique_id=1048515751]
