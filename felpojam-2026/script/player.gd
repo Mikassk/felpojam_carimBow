@@ -16,6 +16,7 @@ var was_pressed: bool = false
 var key_pressed = ""
 
 var can_pressed: bool = true
+var check_input: bool = true
 
 var frame_: int = 0
 # Called when the node enters the scene tree for the first time.
@@ -38,14 +39,22 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if was_pressed == false:
-		check_button_pressed()
-	else:
-		if can_pressed == true:
-			if Input.is_action_just_pressed("key_space"):
-				
-				check_answer()
-				was_pressed = false
+	
+	check_button_pressed()
+	
+	if Input.is_action_just_pressed("key_space"):
+		anim.frame = 0
+		anim.play("hand_stamp")
+		check_answer()
+	#if was_pressed == true && can_pressed == true:
+	#
+		#if Input.is_action_just_pressed("key_space"):
+			#was_pressed = false
+			#check_input = false
+			#
+			#print("CLICK")
+			#
+		
 	pass
 
 func check_button_pressed():
@@ -181,32 +190,40 @@ func check_button_pressed():
 		#was_pressed = true
 
 func check_answer():
-	print(can_pressed)
+	check_input = true
 	if can_pressed == true:
-		var correct_key = customer_.get("key")
-		var correct: bool = false
-		
-		if(correct_key == key_pressed):
-			var total = 3
-			var coin_ = 3 - error
-			if coin_ <= 0:
-				coin_ = 1
-			correct = true
-			hud.add_combo(1)
-			hud.add_coin(coin_)
-			customer_.positive_feedback()
-			error = 0
-			anim.frame = 0
-			anim.play("hand_stamp")
-			var anim_stamp = "stamp"+str(frame_)
-			await get_tree().create_timer(0.4).timeout
-			stamp.play(anim_stamp)
-			document.start_anim()
-			level_control._next_customer()
-		else:
-			hud.add_combo(0)
-			error+=1
+		if is_instance_valid(customer_):
+			var correct_key = customer_.get("key")
+			
+			var correct: bool = false
+			
+			if(correct_key == key_pressed):
+				customer_.positive_feedback()
+				customer_ = null
+				level_control._next_customer()
+				var total = 3
+				var coin_ = 3 - error
+				if coin_ <= 0:
+					coin_ = 1
+				correct = true
+				hud.add_combo(1)
+				hud.add_coin(coin_)
+				
+				error = 0
+				
+				var anim_stamp = "stamp"+str(frame_)
+				
+				await get_tree().create_timer(0.4).timeout
+				stamp.play(anim_stamp)
+				document.start_anim()
+				
+				
+			else:
+				hud.add_combo(0)
+				error+=1
 		key_pressed = ""
+	
+	
 
 #func connect_customer():
 	#customer_.customer_exited.connect(_on_customer_exited)

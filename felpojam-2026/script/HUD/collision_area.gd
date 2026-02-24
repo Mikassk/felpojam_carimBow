@@ -19,7 +19,7 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if can_pressed && !mousepressed:
 			mousepressed = true
-			print("clicou")
+			
 			start_anim()
 			
 func start_anim():

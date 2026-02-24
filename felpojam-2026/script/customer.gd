@@ -16,6 +16,7 @@ var anim_idle = "npc_idle"+str(animate)
 
 var initiate: bool = false
 var change_balloon: bool = false
+var final: bool = false
 
 var off_set_x: Array = [-200,80,80,30,30]
 var off_set_y: Array = [20,150,80,80,0]
@@ -35,6 +36,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if change_balloon:
+		if position.x <= -1333:
+			change_balloon = 0
+			rand_key()
+			scale = Vector2.ONE
+			anim_balloon.modulate.a = 1.0
+			$spr_balloon.modulate.a = 1.0
+			
 	pass
 	
 #função do balão dos pedidos
@@ -88,11 +97,9 @@ func positive_feedback():
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self,"scale",Vector2(1.1,1.1),0.4)
 	
-	tween.tween_property(self,"scale",Vector2.ONE,0.4).set_delay(0.0)
+	tween.tween_property(self,"scale",Vector2.ONE,0.4)
 	
 	
-
-
 	
 func negative_feedback():
 	pass
@@ -109,17 +116,21 @@ func set_sprite():
 	var y_ = off_set_y[index_sprite]
 	anim.offset = Vector2(x_,y_)
 	
-func change_position(x_: int, y_:int):
-	tween = create_tween()
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self,"position:x",x_,0.7)
-	tween.parallel().tween_property(self,"position:y",y_,0.7)
-	await get_tree().create_timer(0.3).timeout
-	if change_balloon:
-		rand_key()
-		change_balloon = false
-	scale = Vector2.ONE
+func change_position(x_: int, y_:int, speed:int = 0.7):
+	if final == false:
+		
+		#if tween:
+			#tween.kill()
+		tween = create_tween()
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(self,"position:x",x_,0.7)
+		await tween.parallel().tween_property(self,"position:y",y_,speed).finished
+		await get_tree().create_timer(0.3).timeout
+		#if change_balloon:
+			#rand_key()
+			#change_balloon = false
+		
 	
 func final_position(x_: int, y_:int):
 	emit_signal("customer_exited")
@@ -128,8 +139,11 @@ func final_position(x_: int, y_:int):
 	tween_.set_ease(Tween.EASE_IN_OUT)
 	tween_.tween_property(self,"position:x",x_,1.0)
 	await tween_.parallel().tween_property(self,"position:y",y_,1.0).finished
+	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
-
+func change_alpha_balloon():
+	anim_balloon.modulate.a = 0.0
+	$spr_balloon.modulate.a = 0.0
 	
 	

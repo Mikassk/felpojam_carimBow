@@ -10,6 +10,7 @@ class_name hud
 @export var clock_hand: Sprite2D
 @export var clock_day: Label
 @export var coin_on_table: AnimatedSprite2D
+@export var level: Node
 
 var coin: int = 0 
 var current_coin: int = 0
@@ -103,13 +104,13 @@ func add_coin(value: int):
 	
 	if current_coin > 0 && current_coin< 30:
 		index_anim = 1
-	elif current_coin >= 30 && current_coin < 80:
+	elif current_coin >= 30 && current_coin < 150:
 		index_anim = 2
-	elif current_coin >= 80 && current_coin < 150:
+	elif current_coin >= 150 && current_coin < 400:
 		index_anim = 3
-	elif current_coin >= 150 && current_coin < 250:
+	elif current_coin >= 400 && current_coin < 1000:
 		index_anim = 4
-	elif current_coin >= 250:
+	elif current_coin >= 1000:
 		index_anim = 5
 	var str_coin_table = "coin_table"+str(index_anim)
 	coin_on_table.play(str_coin_table)
@@ -119,8 +120,13 @@ func add_current_coin_to_coin():
 	var speed = 0.03
 	if current_coin > 150 && current_coin < 350:
 		speed = 0.01
-	elif current_coin >= 350:
+	elif current_coin >= 350 && current_coin < 500:
 		speed = 0.007
+	elif current_coin >= 500 && current_coin < 800:
+		speed = 0.001
+	elif current_coin >= 800:
+		speed = 0.0005
+		
 	for i in current_coin:
 		coin+=1
 		count_coin.text = (str(coin))
@@ -131,7 +137,7 @@ func add_current_coin_to_coin():
 	
 	
 func _on_Timer_timeout():
-	if timer_value > 0:
+	if timer_value > 1:
 		timer_value -= 1
 	else:
 		timer.stop()
@@ -174,12 +180,16 @@ func anim_coin_table():
 	
 	
 func _get_coins():
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property($anim_get_coin,"modulate:a",1.0,0.5)
-	$collision_area.can_pressed = true
+	if current_coin > 0:
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_SINE)
+		tween.tween_property($anim_get_coin,"modulate:a",1.0,0.5)
+		$collision_area.can_pressed = true
+	else:
+		await get_tree().create_timer(0.5).timeout
+		level.restart_day()
 	
-func 
+
 	
 	

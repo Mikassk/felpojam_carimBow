@@ -1,5 +1,5 @@
 extends Node2D
-var timer_max:= 30
+var timer_max:= 60
 var timer_total = timer_max
 
 @export var timer_label: Label
@@ -12,7 +12,7 @@ var timer_total = timer_max
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer.timeout.connect(_on_Timer_timeout)
-	timer.start() # Start the timer
+	# # Start the timer
 	_update_label()
 	pass # Replace with function body.
 

@@ -13,7 +13,6 @@ timer_label = NodePath("timer__update")
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="." unique_id=1654388236]
-autostart = true
 
 [node name="timer__update" type="Label" parent="." unique_id=1336419260]
 visible = false

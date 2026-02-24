@@ -18,9 +18,11 @@ var current_npc_index: Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Fade.fade_out(0.0,1.5)
+	$day_texture.scale = Vector2(1,0)
+	$day_name.modulate.a = 0.0
 	hud.coin_animation_finished.connect(restart_day)
-	
-	_on_load_customer()
+	start_day()
+	#_on_load_customer()
 	
 	pass # Replace with function body.
 
@@ -41,15 +43,15 @@ func _on_load_customer():
 		
 		var create_customer_ = customer_load.instantiate()
 		customer_tree.add_child(create_customer_)
-		create_customer_.position = Vector2(int(c_x[i]),int(c_y[i]))
-		
+		create_customer_.position = Vector2(-1415,126)
+		create_customer_.change_position(int(c_x[i]),int(c_y[i]),3.0) 
 		create_customer_.pos = i
 		#customer_.create()
 		customer_array.append(create_customer_) #adiciona o npc
 		current_customer.append(i) #adiciona a ordem do npc
 		if i < 3:
 			var current_index = npc_index[i] 
-			print(current_index)
+		
 			create_customer_.index_sprite = current_index
 			create_customer_.set_sprite()
 			current_npc_index.append(current_index) #adiciona o index da sprite do npc  
@@ -82,8 +84,9 @@ func _next_customer():
 		
 		if check_exists == false:
 			array_index.append(value)
+			print(value)
 		
-	array_index.sort()
+	array_index.shuffle()
 	# alterar o index atual
 	for i in customer_array.size(): 
 		var value = current_customer[i]
@@ -100,12 +103,13 @@ func _next_customer():
 		if i == 2:
 			new_customer.index_sprite = array_index[0]
 			new_customer.set_sprite()
-		new_customer.change_position(x_,y_)
+		new_customer.change_position(x_,y_,0.5)
 	
 	
 	
 	var  customer_previous = customer_array[index_previous]
 	customer_previous.change_balloon = true
+	customer_previous.change_alpha_balloon()
 	for i in 3:
 		var npc_index = current_customer[i]
 		var npc = customer_array[npc_index]
@@ -119,7 +123,7 @@ func _go_away():
 		var new_customer = customer_array[changed_index]
 		var x_ = -1415
 		var y_ = 126
-		print(new_customer)
+		new_customer.final = true
 		new_customer.final_position(x_,y_)
 	
 #reinicia a fase depois que acaba o tempo
@@ -134,8 +138,32 @@ func restart_day():
 	npc_index.clear()
 	$stamp.play("stamp0")
 	hud._restart_clock_hand(current_day)
-	_on_load_customer()
+	start_day()
 	
 	Fade.fade_out(0.0,2.0)
-	timer._timer_start()
 	player.can_pressed = true
+
+func start_day():
+	var tween_day = create_tween()
+	$day_name.text = "Dia "+str(current_day)
+	tween_day.set_trans(Tween.TRANS_SINE)
+	tween_day.set_ease(Tween.EASE_OUT)
+	tween_day.tween_property($day_texture,"scale",Vector2(1,1),0.4)
+	tween_day.tween_property($day_name,"modulate:a",1.0,0.4)
+	
+	await get_tree().create_timer(1.5).timeout
+	tween_day.kill()
+	tween_day = create_tween()
+	tween_day.set_trans(Tween.TRANS_SINE)
+	tween_day.set_ease(Tween.EASE_OUT)
+	tween_day.tween_property($day_texture,"scale",Vector2(1,0),0.6)
+	tween_day.parallel().tween_property($day_name,"modulate:a",0.0,0.6)
+	await get_tree().create_timer(1.0).timeout
+	_on_load_customer()
+	await get_tree().create_timer(0.2).timeout
+	timer._timer_start()
+	
+	
+	
+	
+	
