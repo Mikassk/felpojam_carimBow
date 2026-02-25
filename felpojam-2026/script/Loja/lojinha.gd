@@ -3,11 +3,17 @@ extends Node2D
 @onready var item_tree: Node = get_node("item_lojinha")
 @onready var dialogue: Sprite2D = get_node("dialogue")
 
+@onready var label_name: Label = get_node("item_name")
+@onready var label_text: Label = get_node("item_text")
+
 var pos_x: Array = [-200, 250, 700]
 var pos_y: int = -50
 
-var obj_atual: Node
-var item_list: Array = [0, 1, 2, 3, 4]
+var obj_atual: Node = null
+var obj_novo: Node = null
+var item_list: Array = [0, 1, 2, 3, 4, 5]
+
+var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,15 +48,47 @@ func _item_spawn():
 			create_item._set_sprite()
 			
 		else:
-			create_item.spr_index = 5
+			create_item.spr_index = 6
 			create_item._set_sprite()
 
 func _spawn_ballon():
-	if dialogue.scale == Vector2(0.9,0.0):
-		var tween = create_tween()
+	if obj_atual == null:
+		obj_atual = obj_novo
 		
-		tween.set_trans(Tween.TRANS_BACK)
-		tween.set_ease(Tween.EASE_IN_OUT)
+		_fadeIn()
 		
-		tween.tween_property(dialogue, "scale", Vector2(0.9,1.2), 0.8)
-		tween.parallel().tween_property(dialogue, "modulate:a", 1.0, 0.8)
+	elif obj_atual != obj_novo:
+		obj_atual = obj_novo
+		
+		label_name.text = ""
+		label_text.text = ""
+		await get_tree().create_timer(0.1).timeout
+		_fadeOut()
+		
+func _fadeIn():
+	tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(dialogue, "scale", Vector2(0.9,1.2), 0.5)
+	await tween.parallel().tween_property(dialogue, "modulate:a", 1.0, 0.5).finished
+	
+	tween.kill()
+	_update_text()
+
+func _fadeOut():
+	tween = create_tween()
+	
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(dialogue, "scale", Vector2(0.9,0.0), 0.5)
+	await tween.parallel().tween_property(dialogue, "modulate:a", 0.0, 0.5).finished
+	
+	tween.kill()
+	_fadeIn()
+
+func _update_text():
+	label_name.text = obj_atual.item_name
+	label_text.text = obj_atual.item_text

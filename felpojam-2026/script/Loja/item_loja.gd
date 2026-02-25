@@ -25,6 +25,8 @@ func _set_sprite():
 	item_parent = get_parent().get_parent()
 	anim.frame = spr_index
 	
+	_set_text(spr_index)
+	
 	var tween = create_tween()
 	
 	tween.set_trans(Tween.TRANS_BACK)
@@ -33,14 +35,30 @@ func _set_sprite():
 	tween.tween_property(anim, "scale", Vector2(1.0,1.0), 0.8)
 	tween.parallel().tween_property(anim, "modulate:a", 1.0, 0.8)
 	
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT :
-			item_parent.obj_atual = self
-			item_parent._spawn_ballon()
-			
+func _change_text():
+	item_parent.obj_novo = self
+	item_parent._spawn_ballon()
+	
 func _set_text(index: int):
 	match index:
 		0:
-			item_name = ""
-			item_text = ""
+			item_name = "Cubo Estranho"
+			item_text = "Seu dinheiro rende mais: todo valor recebido é aumentado em 5%."
+		1:
+			item_name = "Gema Esquisita"
+			item_text = "Ganhe um bônus de 20% sobre as moedas totais ganhadas no dia."
+		2:
+			item_name = "Retrato do Gato"
+			item_text = "Uma foto do seu gato, único efeito é te motivar mais."
+		3:
+			item_name = "Lembrança Especial"
+			item_text = "Algo que lembre seu gato, talvez te motive a trabalhar mais."
+		4:
+			item_name = "Flor Bonita"
+			item_text = "Ao errar, tem 10% de chance de manter o combo ativo."
+		5:
+			item_name = "Ampulheta"
+			item_text = "O dia tem 10% de chance de durar mais."
+		6:
+			item_name = "Chave Especial"
+			item_text = "A chave para ter seu gato de volta."

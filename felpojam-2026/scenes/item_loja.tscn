@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://jaqhxnjve5c6" path="res://sprite/itens/itens_03.png" id="4_k24l0"]
 [ext_resource type="Texture2D" uid="uid://dhk6rco2slhio" path="res://sprite/itens/itens_04.png" id="5_uumug"]
 [ext_resource type="Texture2D" uid="uid://dssb4cip88ayw" path="res://sprite/itens/itens_05.png" id="6_o7tcq"]
+[ext_resource type="Texture2D" uid="uid://b3mxcm44eh7v7" path="res://sprite/itens/itens_06.png" id="8_m0xpc"]
+[ext_resource type="Script" uid="uid://p7kaqb4rhw6g" path="res://script/Loja/item_collision.gd" id="9_k24l0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pyr8u"]
 animations = [{
@@ -18,21 +20,27 @@ animations = [{
 "texture": ExtResource("2_veyyn")
 }, {
 "duration": 1.0,
+"texture": ExtResource("4_k24l0")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_m0xpc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_k24l0")
+"texture": ExtResource("6_o7tcq")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_uumug")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_o7tcq")
+"texture": ExtResource("8_m0xpc")
 }],
 "loop": false,
 "name": &"item_frames",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0xpc"]
+size = Vector2(144, 137.33334)
 
 [node name="item_loja" type="Node2D" unique_id=778591841]
 scale = Vector2(1.5, 1.5)
@@ -41,3 +49,10 @@ script = ExtResource("1_veyyn")
 [node name="animate_item" type="AnimatedSprite2D" parent="." unique_id=1646316542]
 sprite_frames = SubResource("SpriteFrames_pyr8u")
 animation = &"item_frames"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1265285524]
+script = ExtResource("9_k24l0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1023379503]
+shape = SubResource("RectangleShape2D_m0xpc")
+debug_color = Color(0, 0.6, 0.69803923, 0)
