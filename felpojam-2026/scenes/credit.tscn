@@ -1,13 +1,7 @@
 [gd_scene format=3 uid="uid://bnk2es4qdpsl2"]
 
 [ext_resource type="Texture2D" uid="uid://db6dohvg51kei" path="res://sprite/GAMEPLAY/TITULO.png" id="1_5egdn"]
-[ext_resource type="FontFile" uid="uid://b62xtb6dqwjxc" path="res://font/Roboto-Black.ttf" id="2_st0h4"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_uybke"]
-font = ExtResource("2_st0h4")
-font_size = 30
-outline_size = 2
-outline_color = Color(0.32156864, 0.043137256, 0.007843138, 1)
+[ext_resource type="Script" uid="uid://g2ktv7ojn8pl" path="res://script/Credit/credit.gd" id="1_st0h4"]
 
 [node name="Control" type="Control" unique_id=1061549940]
 layout_mode = 3
@@ -17,47 +11,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(-56, -431)
+script = ExtResource("1_st0h4")
 
-[node name="Title" type="TextureRect" parent="." unique_id=2085175511]
-layout_mode = 0
-offset_left = -889.0
-offset_top = -500.0
-offset_right = 311.0
-offset_bottom = 4.0
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("1_5egdn")
-
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=982165650]
+[node name="Background" type="TextureRect" parent="." unique_id=982165650]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=806604126]
-
-[node name="name_credit" type="Label" parent="." unique_id=931853625]
+[node name="Title" type="TextureRect" parent="." unique_id=2085175511]
 layout_mode = 0
-offset_left = -18.0
-offset_top = -539.0
-offset_right = 851.0
-offset_bottom = 340.0
-text = "Aldévio de Oliveira Serra Neto
-Sonorização e revisão
+offset_left = -338.0
+offset_top = -502.0
+offset_right = 862.0
+offset_bottom = 2.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_5egdn")
 
-Arthur Souza Vieira
-Ilustração da HQ da introdução e dos créditos
+[node name="labels" type="Node2D" parent="." unique_id=1599372345]
 
-Gustavo de Oliveira Thur
-Programação
-
-Monica Mika Sassaki
-Programação, Game design e Produção
-
-Otavio Salvalaggio de Cordova
-Testes e Qualidade
-
-William Enzo Maeda
-Ilustração
-"
-label_settings = SubResource("LabelSettings_uybke")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Camera2D" type="Camera2D" parent="." unique_id=806604126]
+metadata/_edit_lock_ = true
