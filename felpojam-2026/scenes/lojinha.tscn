@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bm16vu5rfuac1"]
+
+[ext_resource type="Script" uid="uid://drsjl872vdu1x" path="res://script/Loja/lojinha.gd" id="1_ntd0c"]
+[ext_resource type="Texture2D" uid="uid://qy8bdmx4xivf" path="res://sprite/Loja/popup.png" id="1_yep2t"]
+
+[node name="lojinha" type="Node2D" unique_id=313560920]
+script = ExtResource("1_ntd0c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=990105926]
+modulate = Color(1, 1, 1, 0.4509804)
+texture = ExtResource("1_yep2t")
+
+[node name="item_lojinha" type="Node2D" parent="." unique_id=1397052242]

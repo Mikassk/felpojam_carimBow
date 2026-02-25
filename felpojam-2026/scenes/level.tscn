@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://diaxs8mappluc" path="res://scenes/shop_time.tscn" id="17_8gofh"]
 [ext_resource type="Texture2D" uid="uid://djn5si8pigwmw" path="res://sprite/faixa.png" id="18_gunhw"]
 [ext_resource type="FontFile" uid="uid://ckrj5qqnxqyag" path="res://font/UnifrakturCook-Bold.ttf" id="19_8gofh"]
+[ext_resource type="PackedScene" uid="uid://bm16vu5rfuac1" path="res://scenes/lojinha.tscn" id="21_h6wmr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6wmr"]
 atlas = ExtResource("10_arp2o")
@@ -197,6 +198,8 @@ label_settings = SubResource("LabelSettings_h6wmr")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="lojinha" parent="." unique_id=313560920 instance=ExtResource("21_h6wmr")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=57593822]
 ignore_rotation = false

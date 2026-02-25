@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p6wqpshdkg4d"
-path="res://.godot/imported/CARIMBO_SAQUINHO.png-f8ddcaa918d9bf757377f6026d0ed464.ctex"
+uid="uid://qy8bdmx4xivf"
+path="res://.godot/imported/popup.png-6e79c006561944767d0227456986cbfd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CARIMBOS/CARIMBO_SAQUINHO.png"
-dest_files=["res://.godot/imported/CARIMBO_SAQUINHO.png-f8ddcaa918d9bf757377f6026d0ed464.ctex"]
+source_file="res://sprite/Loja/popup.png"
+dest_files=["res://.godot/imported/popup.png-6e79c006561944767d0227456986cbfd.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://61qlv4abhcx7"
-path="res://.godot/imported/CARIMBO_MONSTRO.png-ff7cdad72b2fd55a5222b5de48271345.ctex"
+uid="uid://bjl782n1pg46b"
+path="res://.godot/imported/item.png-2af80384388afae49b0608bf5556859e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CARIMBOS/CARIMBO_MONSTRO.png"
-dest_files=["res://.godot/imported/CARIMBO_MONSTRO.png-ff7cdad72b2fd55a5222b5de48271345.ctex"]
+source_file="res://sprite/Loja/item.png"
+dest_files=["res://.godot/imported/item.png-2af80384388afae49b0608bf5556859e.ctex"]
 
 [params]
 
