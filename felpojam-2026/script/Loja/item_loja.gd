@@ -89,3 +89,9 @@ func _set_text(index: int):
 			item_name = "Chave Especial"
 			item_text = "A chave para ter seu gato de volta."
 			item_price = 1000;
+
+func _add_price():
+	item_parent.price_total = item_parent.price_total + item_price
+	
+func _reset_price():
+	item_parent.price_total = item_parent.price_total - item_price

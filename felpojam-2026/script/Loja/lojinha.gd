@@ -16,6 +16,8 @@ var obj_atual: Node = null
 var obj_novo: Node = null
 var item_list: Array = [0, 1, 2, 3, 4, 5]
 
+var price_total: int = 0
+
 var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
@@ -66,6 +68,7 @@ func _item_spawn():
 			create_item.spr_index = 6
 			create_item._set_sprite()
 		item_btn.modulate.a = 1.0
+		item_btn.btnActive = true
 
 func _spawn_ballon():
 	if obj_atual == null:

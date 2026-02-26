@@ -23,6 +23,8 @@ func _on_button_down():
 		tween.set_trans(Tween.TRANS_BACK)
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "rotation_degrees", 180, 0.1)
+		
+		btnPressed = true
 
 func _on_button_up():
 	if btnPressed == true:
@@ -33,3 +35,5 @@ func _on_button_up():
 		tween.set_ease(Tween.EASE_IN_OUT)
 		await tween.tween_property(self, "rotation_degrees", 360, 0.1).finished
 		tween.kill()
+		
+		btnPressed = false
