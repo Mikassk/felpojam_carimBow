@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnk2es4qdpsl2"]
 
-[ext_resource type="Texture2D" uid="uid://db6dohvg51kei" path="res://sprite/GAMEPLAY/TITULO.png" id="1_5egdn"]
 [ext_resource type="Script" uid="uid://g2ktv7ojn8pl" path="res://script/Credit/credit.gd" id="1_st0h4"]
+[ext_resource type="Texture2D" uid="uid://com7viw3ts7q1" path="res://sprite/GAMEPLAY/TELA_INICIAL/TITULO.png" id="2_5egdn"]
 
 [node name="Control" type="Control" unique_id=1061549940]
 layout_mode = 3
@@ -25,7 +25,7 @@ offset_top = -502.0
 offset_right = 862.0
 offset_bottom = 2.0
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("1_5egdn")
+texture = ExtResource("2_5egdn")
 
 [node name="labels" type="Node2D" parent="." unique_id=1599372345]
 

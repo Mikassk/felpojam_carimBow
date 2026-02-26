@@ -49,13 +49,14 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_2owmf")
+metadata/_edit_lock_ = true
 
 [node name="Button_start" type="TextureButton" parent="." unique_id=601931260]
 layout_mode = 0
-offset_left = 1519.0
-offset_top = 675.0
-offset_right = 1899.0
-offset_bottom = 1055.0
+offset_left = 1509.0
+offset_top = 658.0
+offset_right = 1889.0
+offset_bottom = 1038.0
 texture_normal = ExtResource("2_f2sqd")
 texture_pressed = SubResource("CompressedTexture2D_nk2cl")
 texture_hover = SubResource("CompressedTexture2D_3aclv")
@@ -64,16 +65,16 @@ texture_focused = SubResource("CompressedTexture2D_onpg7")
 script = ExtResource("3_mrvhr")
 
 [node name="title" type="Sprite2D" parent="." unique_id=700907865]
-position = Vector2(1159, 279)
+position = Vector2(1031, 287)
 texture = SubResource("CompressedTexture2D_b3say")
 script = ExtResource("4_l7qcg")
 
 [node name="Button_exit" type="TextureButton" parent="." unique_id=1548663531]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 941.0
-offset_right = 274.0
-offset_bottom = 1063.0
+offset_left = 18.0
+offset_top = 922.0
+offset_right = 275.0
+offset_bottom = 1044.0
 texture_normal = SubResource("CompressedTexture2D_jcxwi")
 texture_pressed = SubResource("CompressedTexture2D_mkrff")
 texture_hover = SubResource("CompressedTexture2D_tea5e")
