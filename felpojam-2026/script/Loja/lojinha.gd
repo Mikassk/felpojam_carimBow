@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var menu: Sprite2D = get_node("loja_menu")
 @onready var item_tree: Node = get_node("item_lojinha")
 @onready var dialogue: Sprite2D = get_node("dialogue")
 
@@ -8,8 +9,8 @@ extends Node2D
 
 @onready var item_btn: Button = get_node("button_confirm")
 
-var pos_x: Array = [-200, 250, 700]
-var pos_y: int = -50
+var pos_x: Array = [-60, 275, 610]
+var pos_y: int = -175
 
 var obj_atual: Node = null
 var obj_novo: Node = null
@@ -23,19 +24,29 @@ func _ready() -> void:
 	
 	item_btn.modulate.a = 0.0
 	
+	menu.scale = Vector2(1.0, 0.0)
+	
 	dialogue.modulate.a = 0.0
 	dialogue.scale = Vector2(0.9, 0.0)
 	
 	item_list.shuffle()
 	
 	await get_tree().create_timer(0.75).timeout
-	_item_spawn()
+	_menu_spawn()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
+func _menu_spawn():
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	await tween.tween_property(menu, "scale", Vector2(1.0,1.0), 0.5).finished
+	_item_spawn()
+
 func _item_spawn():
 	for i in 3:
 		var item_load = load("res://scenes/item_loja.tscn")
@@ -76,7 +87,7 @@ func _fadeIn():
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
-	tween.tween_property(dialogue, "scale", Vector2(0.9,1.2), 0.5)
+	tween.tween_property(dialogue, "scale", Vector2(0.9,1.0), 0.5)
 	await tween.parallel().tween_property(dialogue, "modulate:a", 1.0, 0.5).finished
 	
 	tween.kill()

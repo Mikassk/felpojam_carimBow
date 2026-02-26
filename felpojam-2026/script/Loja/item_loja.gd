@@ -1,8 +1,9 @@
 extends Node2D
 class_name item_loja
 
+@onready var price: Button = get_node("item_button")
+
 @onready var anim: AnimatedSprite2D = get_node("animate_item")
-@onready var label_price: Label = get_node("item_price")
 
 var item_parent: Node
 var item_index: int = 0
@@ -16,6 +17,9 @@ var item_price: int = 0
 func _ready() -> void:
 	anim.modulate.a = 0.0
 	anim.scale = Vector2(0.0, 0.0)
+	
+	price.modulate.a = 0.0;
+	price.size = Vector2(0.65, 0.0)
 	
 	pass # Replace with function body.
 
@@ -36,8 +40,20 @@ func _set_sprite():
 	
 	tween.tween_property(anim, "scale", Vector2(1.0,1.0), 0.8)
 	await tween.parallel().tween_property(anim, "modulate:a", 1.0, 0.8).finished
+	tween.kill()
 	
-	label_price.text = "$" + str(item_price) + ",00"
+	_show_price()
+	
+func _show_price():
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(price, "scale", Vector2(0.65,0.65), 0.8)
+	await tween.parallel().tween_property(price, "modulate:a", 1.0, 0.8).finished
+	tween.kill()
+	
+	price.text = "$" + str(item_price) + ",00"
 	
 func _change_text():
 	item_parent.obj_novo = self
