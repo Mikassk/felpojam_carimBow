@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c8j01ra6rf27o" path="res://script/level.gd" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://c4ol1gtvhq32p" path="res://scenes/player.tscn" id="1_u52ul"]
 [ext_resource type="Texture2D" uid="uid://112xsau1vd1" path="res://sprite/GAMEPLAY/CENARIO/BG_GAMEPLAY.png" id="2_olg7q"]
+[ext_resource type="Texture2D" uid="uid://c74i2174jnhou" path="res://sprite/GAMEPLAY/CENARIO/BG_GAMEPLAY_NOITE.png" id="3_8gofh"]
 [ext_resource type="PackedScene" uid="uid://b8xlse4xc3qh0" path="res://scenes/hud.tscn" id="3_dmi07"]
 [ext_resource type="PackedScene" uid="uid://4h7fcqc8cv4x" path="res://scenes/timer.tscn" id="3_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://b77bswnrxy37p" path="res://sprite/GAMEPLAY/CENARIO/BALCAO.png" id="4_t1rx8"]
@@ -17,9 +18,30 @@
 [ext_resource type="Texture2D" uid="uid://bwwtowkkputp0" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_MONSTRO.png" id="12_82cfe"]
 [ext_resource type="Texture2D" uid="uid://btscyadsdweis" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_CASA.png" id="13_gunhw"]
 [ext_resource type="Texture2D" uid="uid://vahfojapiehu" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_POCAO.png" id="14_8gofh"]
-[ext_resource type="PackedScene" uid="uid://diaxs8mappluc" path="res://scenes/shop_time.tscn" id="17_8gofh"]
 [ext_resource type="Texture2D" uid="uid://djn5si8pigwmw" path="res://sprite/faixa.png" id="18_gunhw"]
 [ext_resource type="FontFile" uid="uid://ckrj5qqnxqyag" path="res://font/UnifrakturCook-Bold.ttf" id="19_8gofh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy2fk"]
+atlas = ExtResource("2_olg7q")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmcjb"]
+atlas = ExtResource("3_8gofh")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_556r4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy2fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmcjb")
+}],
+"loop": false,
+"name": &"background_time",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6wmr"]
 atlas = ExtResource("10_arp2o")
@@ -108,9 +130,9 @@ player = NodePath("player")
 timer = NodePath("timer_control")
 hud = NodePath("HUD")
 
-[node name="background" type="Sprite2D" parent="." unique_id=1568050219]
-texture = ExtResource("2_olg7q")
-metadata/_edit_lock_ = true
+[node name="background" type="AnimatedSprite2D" parent="." unique_id=964096626]
+sprite_frames = SubResource("SpriteFrames_556r4")
+animation = &"background_time"
 
 [node name="timer_control" parent="." unique_id=1202839047 node_paths=PackedStringArray("level_control", "hud", "player") instance=ExtResource("3_t1rx8")]
 position = Vector2(-119, -555)
@@ -164,9 +186,6 @@ offset_bottom = -540.0
 grow_horizontal = 1
 grow_vertical = 1
 level = NodePath("..")
-
-[node name="shop_time" parent="." unique_id=83847571 instance=ExtResource("17_8gofh")]
-position = Vector2(892, -232)
 
 [node name="player" parent="." unique_id=1311702046 node_paths=PackedStringArray("level_control", "hud", "stamp", "document") instance=ExtResource("1_u52ul")]
 level_control = NodePath("..")

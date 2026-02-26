@@ -25,6 +25,9 @@ func _process(delta: float) -> void:
 func _on_Timer_timeout():
 	if timer_total > 0:
 		timer_total -= 1
+		var mid = timer_max/2
+		if timer_total == mid:
+			level_control.change_bg()
 		hud._move_clock_hand(timer_max)
 		_update_label()
 	else:

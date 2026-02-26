@@ -137,6 +137,7 @@ func restart_day():
 	current_npc_index.clear()
 	npc_index.clear()
 	$stamp.play("stamp0")
+	$background.frame = 0
 	hud._restart_clock_hand(current_day)
 	start_day()
 	
@@ -163,7 +164,8 @@ func start_day():
 	await get_tree().create_timer(0.2).timeout
 	timer._timer_start()
 	
-	
+func change_bg():
+	$background.frame = 1
 	
 	
 	
