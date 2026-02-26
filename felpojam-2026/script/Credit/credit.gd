@@ -1,6 +1,6 @@
 extends Control
 @onready var labels_tree: Node = get_node("labels")
-var names: Array = ["Aldévio de Oliveira Serra Neto", "Arthur Souza Vieira", "Gustavo de Oliveira Thur", "Monica Mika Sassaki", "OtavioSalvalaggio de Cordova","William Enzo Maeda"]
+var names: Array = ["Aldévio de Oliveira Serra Neto", "Arthur Souza Vieira", "Gustavo de Oliveira Thur", "Monica Mika Sassaki", "Otavio Salvalaggio de Cordova","William Enzo Maeda"]
 var jobs: Array = ["Sonorização e Revisão", "Ilustração da HQ da introdução e dos créditos","Programação","Programação, Game design e Produção","Testes e Qualidade","Ilustração"]
 
 
@@ -25,6 +25,9 @@ func spawn_names():
 		labels_tree.add_child(create_label_name)
 		create_label_name.txt_name = names[i]
 		create_label_name.txt_job = jobs[i]
+		create_label_name.pos_x = x_
+		create_label_name.pos_y = y_+(y_delta*i)
 		create_label_name.anim_text()
-		create_label_name.position = Vector2(x_,y_+(y_delta*i))
+		#create_label_name.pivot_offset = Vector2(scale.x/2, scale.y/2)
+		#create_label_name.position = Vector2(x_,y_+(y_delta*i))
 		await get_tree().create_timer(0.2).timeout

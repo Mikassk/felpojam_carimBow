@@ -6,6 +6,8 @@ extends Node2D
 @onready var label_name: Label = get_node("item_name")
 @onready var label_text: Label = get_node("item_text")
 
+@onready var item_btn: Button = get_node("button_confirm")
+
 var pos_x: Array = [-200, 250, 700]
 var pos_y: int = -50
 
@@ -18,6 +20,8 @@ var tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
+	
+	item_btn.modulate.a = 0.0
 	
 	dialogue.modulate.a = 0.0
 	dialogue.scale = Vector2(0.9, 0.0)
@@ -50,6 +54,7 @@ func _item_spawn():
 		else:
 			create_item.spr_index = 6
 			create_item._set_sprite()
+		item_btn.modulate.a = 1.0
 
 func _spawn_ballon():
 	if obj_atual == null:
