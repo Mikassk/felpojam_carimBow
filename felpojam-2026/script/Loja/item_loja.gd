@@ -92,6 +92,8 @@ func _set_text(index: int):
 
 func _add_price():
 	item_parent.price_total = item_parent.price_total + item_price
+	item_parent.buy = spr_index
 	
 func _reset_price():
 	item_parent.price_total = item_parent.price_total - item_price
+	item_parent.buy = -1

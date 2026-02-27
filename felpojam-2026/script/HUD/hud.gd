@@ -22,6 +22,9 @@ var pos_y_coin_table: float = 0.0
 var frame_combo: int = 0
 var day_id: int = 0
 
+var create_loja
+var have_item: Array = [0, 0, 0, 0, 0, 0]
+
 signal coin_animation_finished
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,7 +36,6 @@ func _ready() -> void:
 	pos_y_coin_hud = $image_coin.position.y
 	pos_y_coin_table = coin_on_table.position.y
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -65,7 +67,6 @@ func animation_combo():
 	tween.parallel().tween_property($anim_combo2,"scale",Vector2.ONE,0.4)
 	tween.parallel().tween_property($animation_combo,"scale",Vector2.ONE,0.4)
 	
-	
 func add_combo(value: int):
 	if value != 0:
 		
@@ -80,8 +81,6 @@ func add_combo(value: int):
 		_end_combo()
 		await get_tree().create_timer(0.3).timeout
 		check_combo()
-		
-	
 	
 func check_combo():
 	frame_combo = 0
@@ -199,11 +198,24 @@ func _get_coins():
 		
 func _create_lojinha():
 	var loja_load = load("res://scenes/lojinha.tscn")
+	var aux_array: Array = []
+	var item_count: int = 0;
 	
-	var create_loja = loja_load.instantiate()
+	for i in 6:
+		if have_item[i] == 0:
+			aux_array[item_count] = i
+			item_count += 1
+	
+	create_loja = loja_load.instantiate()
 	create_loja.position = Vector2(0.0, 0.0)
+	create_loja._hud = $HUD
+	create_loja.item_list = aux_array
 	create_loja.coins = coin
 	create_loja.coin_day = current_coin
 	create_loja.day = day_id
 	
 	current_coin = 0
+	
+func _reset_day():
+	create_loja.queue_free()
+	level.restart_day()

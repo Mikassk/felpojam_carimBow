@@ -7,22 +7,31 @@ extends Node2D
 @onready var label_name: Label = get_node("item_name")
 @onready var label_text: Label = get_node("item_text")
 @onready var label_tax: Label = get_node("tax_text")
+@onready var label_loja: Label = get_node("loja_text")
 
 @onready var item_btn: Button = get_node("button_confirm")
+
+var _hud: Node
 
 var pos_x: Array = [-60, 275, 610]
 var pos_y: int = -175
 
 var obj_atual: Node = null
 var obj_novo: Node = null
-var item_list: Array = [0, 1, 2, 3, 4, 5]
 
+var item_list: Array = [0, 1, 2, 3]
+var item_count: int = 0
+
+var buy: int = -1
+
+var first_time: bool = false
 var no_tax: bool = false
 var no_money: bool = false
+var tax_pay: bool = false
 
 var tax: int = 0
 var price_total: int = 0
-var coins: int = 500
+var coins: int = 0
 var coin_day: int = 0
 var day: int = 0
 
@@ -40,7 +49,8 @@ func _ready() -> void:
 	dialogue.modulate.a = 0.0
 	dialogue.scale = Vector2(0.9, 0.0)
 	
-	item_list.shuffle()
+	if day < 2:
+		first_time = true
 	
 	await get_tree().create_timer(0.75).timeout
 	_menu_spawn()
@@ -56,11 +66,24 @@ func _menu_spawn():
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
 	await tween.tween_property(menu, "scale", Vector2(1.0,1.0), 0.5).finished
+	label_loja.text = "Escolha um item:"
 	label_tax.text = "Taxa do dia = $" + str(tax)
+	if first_time == true:
+		_fadeIn()
 	_item_spawn()
 
 func _item_spawn():
-	for i in 3:
+	var _j: int
+	item_count = item_list.size()
+	item_list.shuffle()
+	if item_count > 1:
+		_j = 3
+	elif item_count > 0:
+		_j = 2
+	else:
+		_j = 1
+	
+	for i in _j:
 		var item_load = load("res://scenes/item_loja.tscn")
 		
 		var create_item = item_load.instantiate();
@@ -68,12 +91,11 @@ func _item_spawn():
 		create_item.position = Vector2(int(pos_x[i]), pos_y)
 		create_item.item_index = i
 		
-		if i < 2:
+		if i < (_j - 1):
 			var current_sprite = item_list[i]
 			
 			create_item.spr_index = current_sprite
 			create_item._set_sprite()
-			
 		else:
 			create_item.spr_index = 6
 			create_item._set_sprite()
@@ -81,16 +103,9 @@ func _item_spawn():
 		item_btn.btnActive = true
 
 func _spawn_ballon():
-	if obj_atual == null:
+	if obj_atual != obj_novo:
 		obj_atual = obj_novo
 		
-		_fadeIn()
-		
-	elif obj_atual != obj_novo:
-		obj_atual = obj_novo
-		
-		label_name.text = ""
-		label_text.text = ""
 		await get_tree().create_timer(0.1).timeout
 		_fadeOut()
 		
@@ -107,6 +122,9 @@ func _fadeIn():
 	_update_text()
 
 func _fadeOut():
+	label_name.text = ""
+	label_text.text = ""
+	
 	tween = create_tween()
 	
 	tween.set_trans(Tween.TRANS_BACK)
@@ -119,9 +137,16 @@ func _fadeOut():
 	_fadeIn()
 
 func _update_text():
-	if no_tax == true:
+	if first_time == true:
+		first_time = false
+		label_name.text = ""
+		label_text.position = Vector2(-842.0, -460.0)
+		label_text.text = "Olá meu caro, todo dia irei vir recolher uma taxa pelo uso dos carimbos.\nE antes que me esqueça, eu também tenho alguns itens que podem te interessar.\nCaso queira e possa pagar é claro."
+	
+	elif no_tax == true:
 		no_tax = false
 		label_name.text = ""
+		label_text.position = Vector2(-842.0, -460.0)
 		label_text.text = "Infelizmente você não conseguiu o dinheiro da taxa. Irei pegar meus carimbos de volta."
 		await get_tree().create_timer(2.0).timeout
 		print("game over")
@@ -129,10 +154,20 @@ func _update_text():
 	elif no_money == true:
 		no_money = false
 		label_name.text = ""
+		label_text.position = Vector2(-842.0, -460.0)
 		label_text.text = "Infelizmente você não tem dinheiro o suficiente para comprar isso."
 		
+	elif tax_pay == true:
+		label_name.text = ""
+		label_text.position = Vector2(-842.0, -460.0)
+		label_text.text = "Obrigado pelo pagamento."
+		await get_tree().create_timer(2.0).timeout
+		if(buy > -1):
+			_hud.have_item[buy] = 1
+		_hud._reset_day()
 	else:
 		label_name.text = obj_atual.item_name
+		label_text.position = Vector2(-842.0, -347.0)
 		label_text.text = obj_atual.item_text
 	
 func _check_pay():
@@ -147,4 +182,5 @@ func _check_pay():
 		_fadeOut()
 	
 	else:
-		print("pago")
+		tax_pay = true
+		_fadeOut()
