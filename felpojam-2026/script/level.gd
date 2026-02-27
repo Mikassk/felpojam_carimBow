@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var customer_tree: Node = get_node("customers")
+@onready var popup_tree: Node = get_node("popup")
 @export var player: Node 
 @export var timer: Node
 @export var hud: Node
@@ -14,6 +15,7 @@ var current_day: int = 1
 var npc_index: Array = []
 var current_npc_index: Array = []
 
+var help_screen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +23,12 @@ func _ready() -> void:
 	$day_texture.scale = Vector2(1,0)
 	$day_name.modulate.a = 0.0
 	hud.coin_animation_finished.connect(restart_day)
-	start_day()
+	#start_day()
+	var help_screen_ = load("res://scenes/help_screen.tscn")
+		
+	help_screen = help_screen_.instantiate()
+	popup_tree.add_child(help_screen)
+	
 	#_on_load_customer()
 	
 	pass # Replace with function body.
@@ -84,7 +91,7 @@ func _next_customer():
 		
 		if check_exists == false:
 			array_index.append(value)
-			print(value)
+			#print(value)
 		
 	array_index.shuffle()
 	# alterar o index atual
@@ -167,5 +174,12 @@ func start_day():
 func change_bg():
 	$background.frame = 1
 	
+func _set_frame_command(_frame:int):
+	$commands_paper.frame = _frame
+
+func _quit_help():
+	help_screen.queue_free()
+	await get_tree().create_timer(0.8).timeout
+	start_day()
 	
 	

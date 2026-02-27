@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://56omjl2vludi"]
 
-[ext_resource type="Texture2D" uid="uid://dfxerpx26jh2e" path="res://sprite/GAMEPLAY/INTRO HQ/carimbow copiar.png" id="1_ioskq"]
 [ext_resource type="Script" uid="uid://b4p174tnmi0uk" path="res://script/Intro/intro.gd" id="1_yjqpq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ioskq"]
+load_path = "res://.godot/imported/carimbow 2.png-711ecfdcfa7cb4031848b8e10e62e2a2.ctex"
 
 [node name="Intro" type="Node2D" unique_id=1282220852 node_paths=PackedStringArray("spr", "camera")]
 script = ExtResource("1_yjqpq")
@@ -9,9 +11,9 @@ spr = NodePath("sprIntro")
 camera = NodePath("Camera2D")
 
 [node name="sprIntro" type="Sprite2D" parent="." unique_id=1267626657]
-position = Vector2(340, 1253)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_ioskq")
+position = Vector2(-408.99994, -1597)
+scale = Vector2(0.8, 0.8)
+texture = SubResource("CompressedTexture2D_ioskq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1947805760]
 metadata/_edit_lock_ = true

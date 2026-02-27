@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dnny50b03oojp"]
+
+[ext_resource type="Texture2D" uid="uid://dkx4b3xsv8nt4" path="res://sprite/GAMEPLAY/LOJA/MENU_LOJA.png" id="1_akvjw"]
+[ext_resource type="Script" uid="uid://dcd22cfxr4nr6" path="res://script/HUD/help_screen.gd" id="1_f75bm"]
+[ext_resource type="FontFile" uid="uid://chxvjabiddyd8" path="res://font/MedievalSharp-Regular.ttf" id="2_hsmrg"]
+[ext_resource type="Script" uid="uid://crn37tcq060re" path="res://script/HUD/confirm_button.gd" id="3_hsmrg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f75bm"]
+font = ExtResource("2_hsmrg")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0.043137256, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3bsgv"]
+line_spacing = 2.0
+font = ExtResource("2_hsmrg")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f75bm"]
+load_path = "res://.godot/imported/BOTAO_FINALIZAR.png-3e77b77d76375c1649b9d38a38744695.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3bsgv"]
+load_path = "res://.godot/imported/BOTAO_FINALIZAR.png-3e77b77d76375c1649b9d38a38744695.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sys3r"]
+load_path = "res://.godot/imported/BOTAO_FINALIZAR.png-3e77b77d76375c1649b9d38a38744695.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dh6sn"]
+load_path = "res://.godot/imported/BOTAO_FINALIZAR.png-3e77b77d76375c1649b9d38a38744695.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ja73b"]
+load_path = "res://.godot/imported/BOTAO_FINALIZAR.png-3e77b77d76375c1649b9d38a38744695.ctex"
+
+[node name="Helper" type="Control" unique_id=337721410]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f75bm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1967045964]
+layout_mode = 0
+offset_right = 1917.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.30588236)
+
+[node name="Background" type="TextureRect" parent="." unique_id=1429106048]
+layout_mode = 1
+offset_left = 346.99997
+offset_top = 23.0
+offset_right = 1693.0
+offset_bottom = 1280.0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(672.5899, -2.049179)
+texture = ExtResource("1_akvjw")
+
+[node name="Title" type="Label" parent="." unique_id=1653131516]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 229.0
+offset_right = 1443.0
+offset_bottom = 382.0
+text = "Agora você é um carimbeiro oficial!
+"
+label_settings = SubResource("LabelSettings_f75bm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="." unique_id=348287704]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 339.0
+offset_right = 1417.0
+offset_bottom = 891.0
+text = "Seu trabalho é receber os clientes e aprovar a solicitação com o carimbo correto.
+
+Os clientes vão chegar em fila, cada um com um pedido específico de autenticação, você pode identificá-los através do balão de imagem sobre suas cabeças e aprovar as solicitações utilizando o carimbo correto.. 
+
+Para escolher o carimbo adequado, consulte a tabela à sua direita, que mostra todos os tipos de autenticações e o comando correspondente a cada um.
+
+- Verifique o tipo de carimbo solicitado pelo cliente
+- Pressione a tecla correta baseado na referência à direita
+- Pressione ESPAÇO para carimbar e validar!"
+label_settings = SubResource("LabelSettings_3bsgv")
+autowrap_mode = 2
+
+[node name="Confirm" type="TextureButton" parent="." unique_id=13945388]
+layout_mode = 0
+offset_left = 1188.0
+offset_top = 759.0
+offset_right = 1498.0
+offset_bottom = 1068.0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(155, 149.99988)
+texture_normal = SubResource("CompressedTexture2D_f75bm")
+texture_pressed = SubResource("CompressedTexture2D_3bsgv")
+texture_hover = SubResource("CompressedTexture2D_sys3r")
+texture_disabled = SubResource("CompressedTexture2D_dh6sn")
+texture_focused = SubResource("CompressedTexture2D_ja73b")
+script = ExtResource("3_hsmrg")

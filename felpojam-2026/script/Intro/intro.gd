@@ -3,8 +3,8 @@ extends Node2D
 @export var camera: Camera2D
 var pos: int = 1
 
-var p_x: Array = [327,-299,327,-346,347,-332]
-var p_y: Array = [1259,1252,189,196,-847,-847]
+var p_x: Array = [431,426,-414,409,-403,425,-409]
+var p_y: Array = [1689,616,616,-491,-485,-1603,-1597]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +32,8 @@ func _move_image():
 	
 	if pos < p_x.size():
 		_move_image()
-	
+	else:
+		pass
 	
 	
 	

@@ -15,11 +15,11 @@ class_name hud
 var coin: int = 0 
 var current_coin: int = 0
 var combo: int = 0
-var timer_total := 1
+var timer_total := 3
 var timer_value = timer_total
 var pos_y_coin_hud: float = 0.0
 var pos_y_coin_table: float = 0.0
-
+var frame_combo: int = 0
 var day_id: int = 0
 
 signal coin_animation_finished
@@ -68,6 +68,7 @@ func animation_combo():
 	
 func add_combo(value: int):
 	if value != 0:
+		
 		timer.stop()
 		timer_value = timer_total
 		timer.start()
@@ -83,36 +84,39 @@ func add_combo(value: int):
 	
 	
 func check_combo():
-	if combo < 3:
-		animation.frame = 0
-	if combo >= 3 && combo < 6:
-		animation.frame = 1
-	if combo >= 6 && combo < 9:
-		animation.frame = 2
-	if combo >= 9 && combo < 12:
-		animation.frame = 3
-	if combo >= 12 && combo < 15:
-		animation.frame = 4
-	if combo >= 15:
-		animation.frame = 5
+	frame_combo = 0
+	if combo < 4:
+		frame_combo = 0
+	if combo >= 4 && combo < 8:
+		frame_combo = 1
+	if combo >= 8 && combo < 12:
+		frame_combo = 2
+	if combo >= 12 && combo < 18:
+		frame_combo = 3
+	if combo >= 18 && combo < 25:
+		frame_combo = 4
+	if combo >= 25:
+		frame_combo = 5
+	animation.frame = frame_combo
 
 func add_coin(value: int):
-	anim_coin.text = ("+"+str(value+(2*(combo-1))))
+	anim_coin.text = ("+"+str(value+(2*frame_combo)))
 	anim_coin.animation()
-	current_coin += value + (2*combo)
+	current_coin += value + (2*frame_combo)
+	print(value + (2*frame_combo))
 	
 	animation_coin()
 	var index_anim = 0
 	
-	if current_coin > 0 && current_coin< 30:
+	if current_coin > 0 && current_coin< 50:
 		index_anim = 1
-	elif current_coin >= 30 && current_coin < 150:
+	elif current_coin >= 50 && current_coin < 150:
 		index_anim = 2
 	elif current_coin >= 150 && current_coin < 400:
 		index_anim = 3
-	elif current_coin >= 400 && current_coin < 1000:
+	elif current_coin >= 400 && current_coin < 600:
 		index_anim = 4
-	elif current_coin >= 1000:
+	elif current_coin >= 600:
 		index_anim = 5
 	var str_coin_table = "coin_table"+str(index_anim)
 	coin_on_table.play(str_coin_table)

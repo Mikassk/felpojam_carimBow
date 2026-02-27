@@ -335,6 +335,7 @@ cache/0/50/0/glyphs/70/texture_idx = 0
 [sub_resource type="LabelSettings" id="LabelSettings_yvxph"]
 font = SubResource("FontFile_2f4xg")
 font_size = 28
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Image" id="Image_kokq7"]
 data = {
@@ -802,6 +803,7 @@ cache/0/50/0/glyphs/86/texture_idx = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_bt7vg"]
 font = SubResource("FontFile_67pfg")
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0rae"]
 size = Vector2(361, 65)

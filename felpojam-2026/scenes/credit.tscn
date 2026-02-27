@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://g2ktv7ojn8pl" path="res://script/Credit/credit.gd" id="1_st0h4"]
 [ext_resource type="Texture2D" uid="uid://com7viw3ts7q1" path="res://sprite/GAMEPLAY/TELA_INICIAL/TITULO.png" id="2_5egdn"]
+[ext_resource type="Texture2D" uid="uid://w5ay0hgrskxo" path="res://sprite/GAMEPLAY/CREDITO/homem mau.png" id="3_yoljl"]
+[ext_resource type="Texture2D" uid="uid://cwu2qho0e2pgi" path="res://sprite/GAMEPLAY/CREDITO/homem gatinho.png" id="4_3426w"]
+[ext_resource type="Texture2D" uid="uid://demrjfr0nodh3" path="res://sprite/GAMEPLAY/CREDITO/gatinho.png" id="5_1oyb0"]
+[ext_resource type="Texture2D" uid="uid://bqnwsrha8cuuw" path="res://sprite/GAMEPLAY/CREDITO/papel.png" id="6_0pdtq"]
+[ext_resource type="Texture2D" uid="uid://7kfsss6jkk80" path="res://sprite/GAMEPLAY/CREDITO/dado.png" id="7_7sdj7"]
+[ext_resource type="Texture2D" uid="uid://b63kdoqr24g4v" path="res://sprite/GAMEPLAY/CREDITO/dinheiro.png" id="8_xu8aw"]
+[ext_resource type="Texture2D" uid="uid://d0uc5gjo03lfj" path="res://sprite/GAMEPLAY/CREDITO/carimbo.png" id="9_js2w2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_owgk4"]
+specular_color = Color(0.52091324, 0.3675109, 0.23628253, 1)
 
 [node name="Control" type="Control" unique_id=1061549940]
 layout_mode = 3
@@ -15,17 +25,56 @@ script = ExtResource("1_st0h4")
 
 [node name="Background" type="TextureRect" parent="." unique_id=982165650]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -960.0
+offset_top = -541.0
+offset_right = 961.0
+offset_bottom = 544.0
+texture = SubResource("CanvasTexture_owgk4")
+metadata/_edit_lock_ = true
 
 [node name="Title" type="TextureRect" parent="." unique_id=2085175511]
 layout_mode = 0
-offset_left = -338.0
-offset_top = -502.0
-offset_right = 862.0
-offset_bottom = 2.0
+offset_left = -309.0
+offset_top = -494.0
+offset_right = 891.0
+offset_bottom = 10.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_5egdn")
+
+[node name="spr0" type="Sprite2D" parent="." unique_id=586579812]
+position = Vector2(461, 158)
+scale = Vector2(0.22534214, 0.2253421)
+texture = ExtResource("3_yoljl")
+
+[node name="spr1" type="Sprite2D" parent="." unique_id=85754715]
+position = Vector2(-303, 60.000015)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_3426w")
+
+[node name="spr2" type="Sprite2D" parent="." unique_id=426621219]
+position = Vector2(-434, -91)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_1oyb0")
+
+[node name="spr3" type="Sprite2D" parent="." unique_id=461729170]
+position = Vector2(-433.99997, -164.99998)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_0pdtq")
+
+[node name="spr4" type="Sprite2D" parent="." unique_id=1215791270]
+position = Vector2(-483.99997, -56)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_7sdj7")
+
+[node name="spr5" type="Sprite2D" parent="." unique_id=1780923689]
+position = Vector2(-617, -84)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_xu8aw")
+
+[node name="spr6" type="Sprite2D" parent="." unique_id=1284520416]
+position = Vector2(-517.99994, 22.999998)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_js2w2")
 
 [node name="labels" type="Node2D" parent="." unique_id=1599372345]
 

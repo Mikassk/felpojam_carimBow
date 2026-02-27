@@ -28,6 +28,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if can_pressed == true:
+		if was_pressed == true:
+			level_control._set_frame_command(frame_)
+			#if Input.is_action_just_pressed("key_space"):
+			was_pressed = false
+		if check_input == true:
+			check_answer()
+			level_control._set_frame_command(0)
+			check_input = false
+	
 	#if was_pressed == false:
 		#check_button_pressed()
 	#else:
@@ -45,16 +55,15 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("key_space"):
 		anim.frame = 0
 		anim.play("hand_stamp")
-		check_answer()
-	#if was_pressed == true && can_pressed == true:
-	#
-		#if Input.is_action_just_pressed("key_space"):
-			#was_pressed = false
+		
+		check_input = true
+		
+	
 			#check_input = false
 			#
 			#print("CLICK")
 			#
-		
+	
 	pass
 
 func check_button_pressed():
@@ -63,37 +72,47 @@ func check_button_pressed():
 
 		key_pressed = "key_1"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_2"):
 
 		key_pressed = "key_2"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_3"):
 
 		key_pressed = "key_3"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_4"):
 
 		key_pressed = "key_4"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_5"):
 
 		key_pressed = "key_5"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_6"):
 		key_pressed = "key_6"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_7"):
 		key_pressed = "key_7"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_8"):
 		key_pressed = "key_8"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_9"):
 		key_pressed = "key_9"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_0"):
 		key_pressed = "key_0"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_Q"):
 
 		key_pressed = "key_Q"
@@ -122,75 +141,99 @@ func check_button_pressed():
 	if Input.is_action_just_pressed("key_Y"):
 		key_pressed = "key_Y"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_U"):
 		key_pressed = "key_U"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_I"):
 		key_pressed = "key_I"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_O"):
 		key_pressed = "key_O"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_P"):
 		key_pressed = "key_P"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_A"):
 		key_pressed = "key_A"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_S"):
 		key_pressed = "key_S"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_D"):
 		key_pressed = "key_D"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_F"):
 		key_pressed = "key_F"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_G"):
 		key_pressed = "key_G"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_H"):
 		key_pressed = "key_H"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_J"):
 		key_pressed = "key_J"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_K"):
 		key_pressed = "key_K"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_L"):
 		key_pressed = "key_L"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_Ç"):
 		key_pressed = "key_Ç"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_Z"):
 		key_pressed = "key_Z"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_X"):
 		key_pressed = "key_X"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_C"):
 		key_pressed = "key_C"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_V"):
 		key_pressed = "key_V"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_B"):
 		key_pressed = "key_B"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_N"):
 		key_pressed = "key_N"
 		was_pressed = true
+		frame_ = 0
 	if Input.is_action_just_pressed("key_M"):
 		key_pressed = "key_M"
 		was_pressed = true
+		frame_ = 0
 	#if Input.is_anything_pressed():
 		#key_pressed = "anything"
 		#was_pressed = true
+	
 
 func check_answer():
 	check_input = true
+	
 	if can_pressed == true:
 		if is_instance_valid(customer_):
 			var correct_key = customer_.get("key")
@@ -222,6 +265,7 @@ func check_answer():
 				hud.add_combo(0)
 				error+=1
 		key_pressed = ""
+		
 	
 	
 
