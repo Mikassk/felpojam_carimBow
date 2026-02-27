@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://4pkr0pko3he1"]
 
-[ext_resource type="Texture2D" uid="uid://b5tpnkwun2md" path="res://sprite/itens/itens_00.png" id="1_tele1"]
 [ext_resource type="Script" uid="uid://wc0v7nif7bt7" path="res://script/Loja/item_loja.gd" id="1_veyyn"]
-[ext_resource type="Texture2D" uid="uid://bsf7fky8wrd42" path="res://sprite/itens/itens_01.png" id="2_veyyn"]
-[ext_resource type="Texture2D" uid="uid://dxsc0qsepch4r" path="res://sprite/itens/itens_02.png" id="3_m0xpc"]
-[ext_resource type="Texture2D" uid="uid://jaqhxnjve5c6" path="res://sprite/itens/itens_03.png" id="4_k24l0"]
-[ext_resource type="Texture2D" uid="uid://dhk6rco2slhio" path="res://sprite/itens/itens_04.png" id="5_uumug"]
-[ext_resource type="Texture2D" uid="uid://dssb4cip88ayw" path="res://sprite/itens/itens_05.png" id="6_o7tcq"]
-[ext_resource type="Texture2D" uid="uid://b3mxcm44eh7v7" path="res://sprite/itens/itens_06.png" id="8_m0xpc"]
+[ext_resource type="Texture2D" uid="uid://by0ru5sbu3awa" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/CUBO_ESTRANHO.png" id="2_ah2hr"]
+[ext_resource type="Texture2D" uid="uid://dwjln2dpflcba" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/GEMA_ESTRANHA.png" id="3_4g8rd"]
+[ext_resource type="Texture2D" uid="uid://c4taq2sxlfoki" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/RETRATO_GATO.png" id="4_m1oey"]
+[ext_resource type="Texture2D" uid="uid://bgbvat3htgxty" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/LEMBRANCA_ESPECIAL.png" id="5_y8cqc"]
+[ext_resource type="Texture2D" uid="uid://sqluq0vvil0r" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/FLOR_BONITA.png" id="6_3e3q4"]
+[ext_resource type="Texture2D" uid="uid://bbmvmfp0n7n71" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/AMPULHETA_MAGICA.png" id="7_mmddq"]
+[ext_resource type="Texture2D" uid="uid://dlx5ctykhatkt" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/CHAVE_ESPECIAL.png" id="8_1tg1i"]
 [ext_resource type="Script" uid="uid://p7kaqb4rhw6g" path="res://script/Loja/item_collision.gd" id="9_k24l0"]
 [ext_resource type="FontFile" uid="uid://b62xtb6dqwjxc" path="res://font/Roboto-Black.ttf" id="10_o7tcq"]
 [ext_resource type="Texture2D" uid="uid://cgs6s4geekm31" path="res://sprite/GAMEPLAY/LOJA/PLACA.png" id="10_uumug"]
@@ -18,25 +18,25 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_tele1")
+"texture": ExtResource("2_ah2hr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_veyyn")
+"texture": ExtResource("3_4g8rd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_k24l0")
+"texture": ExtResource("4_m1oey")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_m0xpc")
+"texture": ExtResource("5_y8cqc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_o7tcq")
+"texture": ExtResource("6_3e3q4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_uumug")
+"texture": ExtResource("7_mmddq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_m0xpc")
+"texture": ExtResource("8_1tg1i")
 }],
 "loop": false,
 "name": &"item_frames",
@@ -51,6 +51,7 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_veyyn")
 
 [node name="animate_item" type="AnimatedSprite2D" parent="." unique_id=1646316542]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pyr8u")
 animation = &"item_frames"
 

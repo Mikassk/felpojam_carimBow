@@ -6,6 +6,7 @@ extends Node2D
 
 @onready var label_name: Label = get_node("item_name")
 @onready var label_text: Label = get_node("item_text")
+@onready var label_tax: Label = get_node("tax_text")
 
 @onready var item_btn: Button = get_node("button_confirm")
 
@@ -16,13 +17,21 @@ var obj_atual: Node = null
 var obj_novo: Node = null
 var item_list: Array = [0, 1, 2, 3, 4, 5]
 
+var no_tax: bool = false
+var no_money: bool = false
+
+var tax: int = 0
 var price_total: int = 0
+var coins: int = 500
+var coin_day: int = 0
+var day: int = 0
 
 var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
+	tax = 50 + int(coin_day*0.2)
 	
 	item_btn.modulate.a = 0.0
 	
@@ -47,6 +56,7 @@ func _menu_spawn():
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
 	await tween.tween_property(menu, "scale", Vector2(1.0,1.0), 0.5).finished
+	label_tax.text = "Taxa do dia = $" + str(tax)
 	_item_spawn()
 
 func _item_spawn():
@@ -109,5 +119,32 @@ func _fadeOut():
 	_fadeIn()
 
 func _update_text():
-	label_name.text = obj_atual.item_name
-	label_text.text = obj_atual.item_text
+	if no_tax == true:
+		no_tax = false
+		label_name.text = ""
+		label_text.text = "Infelizmente você não conseguiu o dinheiro da taxa. Irei pegar meus carimbos de volta."
+		await get_tree().create_timer(2.0).timeout
+		print("game over")
+		
+	elif no_money == true:
+		no_money = false
+		label_name.text = ""
+		label_text.text = "Infelizmente você não tem dinheiro o suficiente para comprar isso."
+		
+	else:
+		label_name.text = obj_atual.item_name
+		label_text.text = obj_atual.item_text
+	
+func _check_pay():
+	var final_price: int = tax + price_total
+	
+	if coins < tax:
+		no_tax = true
+		_fadeOut()
+	
+	elif coins < final_price:
+		no_money = true
+		_fadeOut()
+	
+	else:
+		print("pago")

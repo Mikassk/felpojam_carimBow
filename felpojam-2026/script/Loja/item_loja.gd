@@ -38,7 +38,7 @@ func _set_sprite():
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
-	tween.tween_property(anim, "scale", Vector2(1.0,1.0), 0.8)
+	tween.tween_property(anim, "scale", Vector2(0.65,0.65), 0.8)
 	await tween.parallel().tween_property(anim, "modulate:a", 1.0, 0.8).finished
 	tween.kill()
 	
@@ -75,15 +75,15 @@ func _set_text(index: int):
 			item_price = 250;
 		3:
 			item_name = "Lembrança Especial"
-			item_text = "Algo que lembre seu gato, talvez te motive a trabalhar mais."
+			item_text = "Algo que lembra seu gato, talvez te motive a trabalhar mais."
 			item_price = 250;
 		4:
 			item_name = "Flor Bonita"
 			item_text = "Ao errar, tem 10% de chance de manter o combo ativo."
 			item_price = 800;
 		5:
-			item_name = "Ampulheta"
-			item_text = "O dia tem 10% de chance de durar mais."
+			item_name = "Ampulheta Magica"
+			item_text = "O dia de trabalho vai durar 25% mais que o normal."
 			item_price = 800;
 		6:
 			item_name = "Chave Especial"

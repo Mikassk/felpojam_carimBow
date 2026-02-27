@@ -44,4 +44,3 @@ func animation_coin_hud():
 		create_coin.change_position(x_,y_)
 	await get_tree().create_timer(0.5).timeout
 	hud.add_current_coin_to_coin()
-	
