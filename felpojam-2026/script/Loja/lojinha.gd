@@ -35,7 +35,7 @@ var ballon_spawned: bool = false
 
 var tax: int
 var price_total: int
-var coins: int = 150
+var coins: int
 var coin_day: int
 var day: int
 
