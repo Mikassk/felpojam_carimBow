@@ -36,9 +36,12 @@ var coin_day: int = 0
 var day: int = 0
 
 var tween: Tween
+var create_item
+var was_pressed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$loja_background.modulate.a = 0
 	randomize()
 	tax = 50 + int(coin_day*0.2)
 	
@@ -64,7 +67,8 @@ func _menu_spawn():
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	
+	tween.tween_property($loja_background, "modulate:a",0.3, 1.0)
+	tween.tween_property($moço_malvado, "position:x",-626, 0.5)
 	await tween.tween_property(menu, "scale", Vector2(1.0,1.0), 0.5).finished
 	label_loja.text = "Escolha um item:"
 	label_tax.text = "Taxa do dia = $" + str(tax)
@@ -86,7 +90,7 @@ func _item_spawn():
 	for i in _j:
 		var item_load = load("res://scenes/item_loja.tscn")
 		
-		var create_item = item_load.instantiate();
+		create_item = item_load.instantiate();
 		item_tree.add_child(create_item)
 		create_item.position = Vector2(int(pos_x[i]), pos_y)
 		create_item.item_index = i
@@ -140,34 +144,35 @@ func _update_text():
 	if first_time == true:
 		first_time = false
 		label_name.text = ""
-		label_text.position = Vector2(-842.0, -460.0)
-		label_text.text = "Olá meu caro, todo dia irei vir recolher uma taxa pelo uso dos carimbos.\nE antes que me esqueça, eu também tenho alguns itens que podem te interessar.\nCaso queira e possa pagar é claro."
+		label_text.position = Vector2(-842.0, -378.0)
+		label_text.text = "Olá, meu caro! Todo dia vou passar aqui pra recolher a taxa do uso dos carimbos. \nAh, e antes que eu esqueça: também tenho uns itens que podem te interessar… se você quiser e puder pagar, claro."
 	
 	elif no_tax == true:
 		no_tax = false
 		label_name.text = ""
-		label_text.position = Vector2(-842.0, -460.0)
-		label_text.text = "Infelizmente você não conseguiu o dinheiro da taxa. Irei pegar meus carimbos de volta."
+		label_text.position = Vector2(-842.0, -350.0)
+		label_text.text = "Infelizmente você não conseguiu o dinheiro da taxa. Pegarei meus carimbos de volta."
 		await get_tree().create_timer(2.0).timeout
 		print("game over")
 		
 	elif no_money == true:
 		no_money = false
 		label_name.text = ""
-		label_text.position = Vector2(-842.0, -460.0)
+		label_text.position = Vector2(-842.0, -300.0)
 		label_text.text = "Infelizmente você não tem dinheiro o suficiente para comprar isso."
 		
 	elif tax_pay == true:
 		label_name.text = ""
-		label_text.position = Vector2(-842.0, -460.0)
+		label_text.position = Vector2(-842.0, -250.0)
 		label_text.text = "Obrigado pelo pagamento."
+		label_text.autowrap_mode = TextServer.AUTOWRAP_OFF
 		await get_tree().create_timer(2.0).timeout
 		if(buy > -1):
 			_hud.have_item[buy] = 1
 		_hud._reset_day()
 	else:
 		label_name.text = obj_atual.item_name
-		label_text.position = Vector2(-842.0, -347.0)
+		label_text.position = Vector2(-842.0, -280.0)
 		label_text.text = obj_atual.item_text
 	
 func _check_pay():
@@ -182,5 +187,9 @@ func _check_pay():
 		_fadeOut()
 	
 	else:
-		tax_pay = true
-		_fadeOut()
+		if was_pressed == false:
+			was_pressed = true
+			_hud.coin -= final_price
+			_hud._set_coin()
+			tax_pay = true
+			_fadeOut()

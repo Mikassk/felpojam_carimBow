@@ -67,11 +67,11 @@ func _set_text(index: int):
 			item_price = 600;
 		1:
 			item_name = "Gema Esquisita"
-			item_text = "Ganhe um bônus de 20% sobre as moedas totais ganhadas no dia."
+			item_text = "Ganhe um bônus de 20% sobre o total de moedas obtidas no dia."
 			item_price = 600;
 		2:
 			item_name = "Retrato do Gato"
-			item_text = "Uma foto do seu gato, único efeito é te motivar mais."
+			item_text = "Uma foto do seu gato, único efeito: te motivar ainda mais."
 			item_price = 250;
 		3:
 			item_name = "Lembrança Especial"
@@ -83,7 +83,7 @@ func _set_text(index: int):
 			item_price = 800;
 		5:
 			item_name = "Ampulheta Magica"
-			item_text = "O dia de trabalho vai durar 25% mais que o normal."
+			item_text = "O dia de trabalho vai durar 25% a mais que o normal."
 			item_price = 800;
 		6:
 			item_name = "Chave Especial"
@@ -97,3 +97,6 @@ func _add_price():
 func _reset_price():
 	item_parent.price_total = item_parent.price_total - item_price
 	item_parent.buy = -1
+	
+func block_button():
+	$item_button.canPress = false

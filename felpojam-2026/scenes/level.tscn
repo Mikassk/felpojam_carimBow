@@ -25,6 +25,13 @@
 [ext_resource type="Texture2D" uid="uid://vahfojapiehu" path="res://sprite/GAMEPLAY/CARIMBOS/CARIMBO_POCAO.png" id="14_8gofh"]
 [ext_resource type="Texture2D" uid="uid://djn5si8pigwmw" path="res://sprite/faixa.png" id="18_gunhw"]
 [ext_resource type="FontFile" uid="uid://ckrj5qqnxqyag" path="res://font/UnifrakturCook-Bold.ttf" id="19_8gofh"]
+[ext_resource type="Script" uid="uid://bdf4ie4h03dcf" path="res://script/item.gd" id="24_2e2fo"]
+[ext_resource type="Texture2D" uid="uid://dwjln2dpflcba" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/GEMA_ESTRANHA.png" id="25_gur6y"]
+[ext_resource type="Texture2D" uid="uid://by0ru5sbu3awa" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/CUBO_ESTRANHO.png" id="26_v3why"]
+[ext_resource type="Texture2D" uid="uid://c4taq2sxlfoki" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/RETRATO_GATO.png" id="27_asl66"]
+[ext_resource type="Texture2D" uid="uid://bgbvat3htgxty" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/LEMBRANCA_ESPECIAL.png" id="28_2jdvr"]
+[ext_resource type="Texture2D" uid="uid://sqluq0vvil0r" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/FLOR_BONITA.png" id="29_q4oe8"]
+[ext_resource type="Texture2D" uid="uid://bbmvmfp0n7n71" path="res://sprite/GAMEPLAY/LOJA/ITENS_LOJA/AMPULHETA_MAGICA.png" id="30_svjb4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy2fk"]
 atlas = ExtResource("2_olg7q")
@@ -229,6 +236,41 @@ hud = NodePath("../HUD")
 stamp = NodePath("../stamp")
 document = NodePath("../document1")
 metadata/_edit_lock_ = true
+
+[node name="item" type="Node2D" parent="." unique_id=828422879 node_paths=PackedStringArray("level_control", "hud")]
+script = ExtResource("24_2e2fo")
+level_control = NodePath("..")
+hud = NodePath("../HUD")
+
+[node name="Gema" type="Sprite2D" parent="item" unique_id=391006022]
+position = Vector2(893, 41)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("25_gur6y")
+
+[node name="Cubo" type="Sprite2D" parent="item" unique_id=155328]
+position = Vector2(895, -245)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("26_v3why")
+
+[node name="Retrato" type="Sprite2D" parent="item" unique_id=775447036]
+position = Vector2(862, 298)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("27_asl66")
+
+[node name="Lembranca" type="Sprite2D" parent="item" unique_id=2028150530]
+position = Vector2(-857.99994, 438.00003)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("28_2jdvr")
+
+[node name="Flor" type="Sprite2D" parent="item" unique_id=76871289]
+position = Vector2(888, -81)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("29_q4oe8")
+
+[node name="Ampulheta" type="Sprite2D" parent="item" unique_id=188504695]
+position = Vector2(-585.9999, 177)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("30_svjb4")
 
 [node name="popup" type="Node2D" parent="." unique_id=1048515751]
 position = Vector2(-958, -540)

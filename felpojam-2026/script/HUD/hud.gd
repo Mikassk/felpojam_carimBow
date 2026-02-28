@@ -12,7 +12,7 @@ class_name hud
 @export var coin_on_table: AnimatedSprite2D
 @export var level: Node
 
-var coin: int = 0 
+var coin: int = 1000 
 var current_coin: int = 0
 var combo: int = 0
 var timer_total := 3
@@ -68,8 +68,9 @@ func animation_combo():
 	tween.parallel().tween_property($animation_combo,"scale",Vector2.ONE,0.4)
 	
 func add_combo(value: int):
+	var check_active = have_item[4]
+	var rand = randi_range(0,9)
 	if value != 0:
-		
 		timer.stop()
 		timer_value = timer_total
 		timer.start()
@@ -78,9 +79,23 @@ func add_combo(value: int):
 		animation_combo()
 		check_combo()
 	else:
-		_end_combo()
-		await get_tree().create_timer(0.3).timeout
-		check_combo()
+		if check_active == 0:
+			_end_combo()
+			await get_tree().create_timer(0.3).timeout
+			check_combo()
+		else:
+			if(rand != 0):
+				_end_combo()
+				await get_tree().create_timer(0.3).timeout
+				check_combo()
+			else:
+				timer.stop()
+				timer_value = timer_total
+				timer.start()
+				combo+=value
+				anim_combo.text = ("x"+str(combo))
+				animation_combo()
+				check_combo()
 	
 func check_combo():
 	frame_combo = 0
@@ -99,10 +114,14 @@ func check_combo():
 	animation.frame = frame_combo
 
 func add_coin(value: int):
-	anim_coin.text = ("+"+str(value+(2*frame_combo)))
+	var check_active = have_item[0]
+	var value_total = value+(2*frame_combo)
+	if check_active == 1:
+		value_total += value_total + int(value_total*0.05)
+	anim_coin.text = ("+"+str(value_total))
 	anim_coin.animation()
-	current_coin += value + (2*frame_combo)
-	print(value + (2*frame_combo))
+	current_coin += value_total
+
 	
 	animation_coin()
 	var index_anim = 0
@@ -122,17 +141,21 @@ func add_coin(value: int):
 	
 	anim_coin_table()
 func add_current_coin_to_coin():
+	var value = current_coin
+	var check_active = have_item[1]
+	if check_active == 1:
+		value = value + int(value*0.2)
 	var speed = 0.03
-	if current_coin > 150 && current_coin < 350:
+	if value > 150 && value < 350:
 		speed = 0.01
-	elif current_coin >= 350 && current_coin < 500:
+	elif value >= 350 && value < 500:
 		speed = 0.007
-	elif current_coin >= 500 && current_coin < 800:
+	elif value >= 500 && value < 800:
 		speed = 0.001
-	elif current_coin >= 800:
+	elif value >= 800:
 		speed = 0.0005
 		
-	for i in current_coin:
+	for i in value:
 		coin+=1
 		count_coin.text = (str(coin))
 		await get_tree().create_timer(speed).timeout
@@ -197,18 +220,21 @@ func _get_coins():
 		_create_lojinha()
 		
 func _create_lojinha():
+	var parent = get_parent().get_node("popup")
 	var loja_load = load("res://scenes/lojinha.tscn")
 	var aux_array: Array = []
-	var item_count: int = 0;
+	
 	
 	for i in 6:
 		if have_item[i] == 0:
-			aux_array[item_count] = i
-			item_count += 1
+			aux_array.append(i)
+
 	
 	create_loja = loja_load.instantiate()
-	create_loja.position = Vector2(0.0, 0.0)
-	create_loja._hud = $HUD
+	parent.add_child(create_loja)
+	create_loja.position = Vector2(960, 540)
+	create_loja._hud = self
+	print(create_loja._hud)
 	create_loja.item_list = aux_array
 	create_loja.coins = coin
 	create_loja.coin_day = current_coin
@@ -219,3 +245,8 @@ func _create_lojinha():
 func _reset_day():
 	create_loja.queue_free()
 	level.restart_day()
+
+func _set_coin():
+	count_coin.text = str(coin)
+
+	

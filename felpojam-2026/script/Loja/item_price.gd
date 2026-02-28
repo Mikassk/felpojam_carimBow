@@ -7,6 +7,7 @@ var item_granpa: Node
 
 var wasSelected: bool = false
 var wasPressed: bool = false
+var canPress: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,14 +24,16 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_button_up():
-	if item_granpa.btn_id == null || item_granpa.btn_id == self:
-		if wasSelected == false:
-			wasSelected = true
-			item_granpa.btn_id = self
-			select.modulate.a = 1.0
-			item_parent._add_price()
-		else:
-			wasSelected = false
-			item_granpa.btn_id = null
-			select.modulate.a = 0.0
-			item_parent._reset_price()
+	if canPress:
+		if item_granpa.btn_id == null || item_granpa.btn_id == self:
+			if wasSelected == false:
+				wasSelected = true
+				item_granpa.btn_id = self
+				select.modulate.a = 1.0
+				item_parent._add_price()
+				item_parent._change_text()
+			else:
+				wasSelected = false
+				item_granpa.btn_id = null
+				select.modulate.a = 0.0
+				item_parent._reset_price()

@@ -1,5 +1,5 @@
 extends Node2D
-var timer_max:= 60
+var timer_max:= 10
 var timer_total = timer_max
 
 @export var timer_label: Label
@@ -49,6 +49,9 @@ func _timer_is_over():
 	#level_control.restart_day()
 	
 func _timer_start():
+	var check_active =  hud.have_item[5]
+	if check_active == 1:
+		timer_max = timer_max+ int(timer_max*0.25)
 	timer_total = timer_max
 	timer.start()
 	

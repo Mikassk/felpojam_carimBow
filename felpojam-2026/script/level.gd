@@ -143,6 +143,8 @@ func restart_day():
 	current_customer.clear()
 	current_npc_index.clear()
 	npc_index.clear()
+	$item._check_active()
+	$commands_paper.frame = 0
 	$stamp.play("stamp0")
 	$background.frame = 0
 	hud._restart_clock_hand(current_day)
