@@ -35,7 +35,7 @@ var ballon_spawned: bool = false
 
 var tax: int
 var price_total: int
-var coins: int
+var coins: int = 150
 var coin_day: int
 var day: int
 
@@ -178,10 +178,10 @@ func _update_text():
 		
 	elif no_money == true:
 		no_money = false
+		item_btn.btnActive = true
 		label_name.text = ""
 		label_text.position = Vector2(-842.0, -300.0)
 		label_text.text = "Infelizmente você não tem dinheiro o suficiente para comprar isso."
-		
 		
 	elif tax_pay == true:
 		label_name.text = ""
@@ -217,7 +217,6 @@ func _check_pay():
 	
 	elif coins < final_price:
 		no_money = true
-		item_btn._unlock()
 		_fadeOut()
 	
 	else:
