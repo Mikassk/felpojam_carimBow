@@ -14,20 +14,20 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_owgk4"]
 specular_color = Color(0.52091324, 0.3675109, 0.23628253, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3426w"]
+load_path = "res://.godot/imported/BOTAO_VOLTAR.png-ffa3ad22aaa99c1444b0b4fc3fc607e9.ctex"
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1oyb0"]
-load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+load_path = "res://.godot/imported/BOTAO_VOLTAR.png-ffa3ad22aaa99c1444b0b4fc3fc607e9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0pdtq"]
-load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+load_path = "res://.godot/imported/BOTAO_VOLTAR.png-ffa3ad22aaa99c1444b0b4fc3fc607e9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7sdj7"]
-load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+load_path = "res://.godot/imported/BOTAO_VOLTAR.png-ffa3ad22aaa99c1444b0b4fc3fc607e9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xu8aw"]
-load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_js2w2"]
-load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+load_path = "res://.godot/imported/BOTAO_VOLTAR.png-ffa3ad22aaa99c1444b0b4fc3fc607e9.ctex"
 
 [node name="Control" type="Control" unique_id=1061549940]
 layout_mode = 3
@@ -96,16 +96,16 @@ texture = ExtResource("9_js2w2")
 
 [node name="exit_button" type="TextureButton" parent="." unique_id=243005631]
 layout_mode = 0
-offset_left = -130.0
-offset_top = 376.0
-offset_right = 127.0
-offset_bottom = 498.0
+offset_left = -903.0
+offset_top = 410.0
+offset_right = -646.0
+offset_bottom = 532.0
 pivot_offset = Vector2(129, 61)
-texture_normal = SubResource("CompressedTexture2D_1oyb0")
-texture_pressed = SubResource("CompressedTexture2D_0pdtq")
-texture_hover = SubResource("CompressedTexture2D_7sdj7")
-texture_disabled = SubResource("CompressedTexture2D_xu8aw")
-texture_focused = SubResource("CompressedTexture2D_js2w2")
+texture_normal = SubResource("CompressedTexture2D_3426w")
+texture_pressed = SubResource("CompressedTexture2D_1oyb0")
+texture_hover = SubResource("CompressedTexture2D_0pdtq")
+texture_disabled = SubResource("CompressedTexture2D_7sdj7")
+texture_focused = SubResource("CompressedTexture2D_xu8aw")
 script = ExtResource("10_3426w")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=806604126]

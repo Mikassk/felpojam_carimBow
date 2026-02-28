@@ -132,7 +132,7 @@ func add_coin(value: int):
 	var check_active = have_item[0]
 	var value_total = value+(2*frame_combo)
 	if check_active == 1:
-		value_total += value_total + int(value_total*0.05)
+		value_total += value_total + int(value_total*0.1)
 	anim_coin.text = ("+"+str(value_total))
 	anim_coin.animation()
 	current_coin += value_total
@@ -235,8 +235,7 @@ func _get_coins():
 		_create_lojinha()
 		
 func _create_lojinha():
-	MusicScene.stop()
-	MusicScene.stream = preload("res://AUDIO/musica-shop.ogg")
+
 	
 	var parent = get_parent().get_node("popup")
 	var loja_load = load("res://scenes/lojinha.tscn")

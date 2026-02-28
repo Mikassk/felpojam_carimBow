@@ -95,10 +95,10 @@ autowrap_mode = 2
 
 [node name="Confirm" type="TextureButton" parent="." unique_id=13945388]
 layout_mode = 0
-offset_left = 1147.0
-offset_top = 652.0
-offset_right = 2000.0
-offset_bottom = 1504.0
+offset_left = 883.0
+offset_top = 412.0
+offset_right = 1736.0
+offset_bottom = 1264.0
 scale = Vector2(0.3, 0.3)
 pivot_offset = Vector2(454.99976, 433.33374)
 texture_normal = SubResource("CompressedTexture2D_f75bm")

@@ -23,5 +23,6 @@ func _anim_background():
 	tween.tween_property($Title,"modulate:a",1.0,0.8)
 	tween.tween_property($Text,"modulate:a",1.0,0.8)
 	await tween.tween_property($Confirm,"modulate:a",1.0,0.8).finished
+	$Confirm.canpress = true
 
 	

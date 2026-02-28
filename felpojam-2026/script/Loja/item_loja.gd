@@ -63,7 +63,7 @@ func _set_text(index: int):
 	match index:
 		0:
 			item_name = "Cubo Estranho"
-			item_text = "Seu dinheiro rende mais: todo valor recebido é aumentado em 5%."
+			item_text = "Seu dinheiro rende mais: todo valor recebido é aumentado em 10%."
 			item_price = 2000;
 		1:
 			item_name = "Gema Esquisita"
@@ -88,7 +88,7 @@ func _set_text(index: int):
 		6:
 			item_name = "Chave Especial"
 			item_text = "A chave para ter seu gato de volta."
-			item_price = 20000;
+			item_price = 10000;
 
 func _add_price():
 	item_parent.price_total = item_price

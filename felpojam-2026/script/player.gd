@@ -32,21 +32,11 @@ func _process(delta: float) -> void:
 	if can_pressed == true:
 		if was_pressed == true:
 			level_control._set_frame_command(frame_)
-			#if Input.is_action_just_pressed("key_space"):
 			was_pressed = false
 		if check_input == true:
 			check_answer()
 			level_control._set_frame_command(0)
 			check_input = false
-	
-	#if was_pressed == false:
-		#check_button_pressed()
-	#else:
-		#if Input.is_action_just_pressed("key_space"):
-			#
-			#check_answer()
-			#was_pressed = false
-	#pass
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -231,18 +221,21 @@ func check_button_pressed():
 	#if Input.is_anything_pressed():
 		#key_pressed = "anything"
 		#was_pressed = true
-	
+	print(key_pressed)
 
 func check_answer():
 	check_input = true
 	
 	if can_pressed == true:
+		var key = key_pressed
+		key_pressed = ""
+		
 		if is_instance_valid(customer_):
 			var correct_key = customer_.get("key")
 			
 			var correct: bool = false
 			
-			if(correct_key == key_pressed):
+			if(correct_key == key):
 				customer_.positive_feedback()
 				customer_ = null
 				level_control._next_customer()
@@ -267,7 +260,7 @@ func check_answer():
 				hud.add_combo(0)
 				error+=1
 				$audio_error.play()
-		key_pressed = ""
+		
 		
 	
 	

@@ -45,7 +45,7 @@ var was_pressed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	MusicScene.play()
+	fade_out_music()
 	$loja_background.modulate.a = 0
 	randomize()
 	
@@ -181,7 +181,7 @@ func _update_text():
 		label_name.text = ""
 		label_text.position = Vector2(-842.0, -300.0)
 		label_text.text = "Infelizmente você não tem dinheiro o suficiente para comprar isso."
-		item_btn._unlock()
+		
 		
 	elif tax_pay == true:
 		label_name.text = ""
@@ -217,6 +217,7 @@ func _check_pay():
 	
 	elif coins < final_price:
 		no_money = true
+		item_btn._unlock()
 		_fadeOut()
 	
 	else:
@@ -228,3 +229,11 @@ func _check_pay():
 		else:
 			win = true
 		_fadeOut()
+
+func fade_out_music():
+	var tween = create_tween()
+	tween.tween_property(MusicScene, "volume_db", -50,0.5)
+	await tween.tween_callback(MusicScene.stop).finished
+	MusicScene.volume_db = -5
+	MusicScene.stream = preload("res://AUDIO/musica-shop.ogg")
+	MusicScene.play()
