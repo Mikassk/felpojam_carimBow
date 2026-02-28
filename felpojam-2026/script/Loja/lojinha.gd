@@ -234,6 +234,6 @@ func fade_out_music():
 	var tween = create_tween()
 	tween.tween_property(MusicScene, "volume_db", -50,0.5)
 	await tween.tween_callback(MusicScene.stop).finished
-	MusicScene.volume_db = -5
+	MusicScene.volume_db = -20
 	MusicScene.stream = preload("res://AUDIO/musica-shop.ogg")
 	MusicScene.play()
