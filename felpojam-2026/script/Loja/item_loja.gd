@@ -91,12 +91,14 @@ func _set_text(index: int):
 			item_price = 1000;
 
 func _add_price():
-	item_parent.price_total = item_parent.price_total + item_price
+	item_parent.price_total = item_price
 	item_parent.buy = spr_index
 	
 func _reset_price():
-	item_parent.price_total = item_parent.price_total - item_price
+	item_parent.price_total = 0
 	item_parent.buy = -1
+	item_parent.no_spawn = true
+	item_parent._fadeOut()
 	
 func block_button():
 	$item_button.canPress = false

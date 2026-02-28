@@ -29,11 +29,14 @@ var no_tax: bool = false
 var no_money: bool = false
 var tax_pay: bool = false
 
-var tax: int = 0
-var price_total: int = 0
-var coins: int = 0
-var coin_day: int = 0
-var day: int = 0
+var no_spawn: bool = false
+var ballon_spawned: bool = false
+
+var tax: int
+var price_total: int
+var coins: int
+var coin_day: int
+var day: int
 
 var tween: Tween
 var create_item
@@ -52,10 +55,9 @@ func _ready() -> void:
 	dialogue.modulate.a = 0.0
 	dialogue.scale = Vector2(0.9, 0.0)
 	
+	await get_tree().create_timer(0.75).timeout
 	if day < 2:
 		first_time = true
-	
-	await get_tree().create_timer(0.75).timeout
 	_menu_spawn()
 	pass # Replace with function body.
 
@@ -114,6 +116,7 @@ func _spawn_ballon():
 		_fadeOut()
 		
 func _fadeIn():
+	ballon_spawned = true
 	tween = create_tween()
 	
 	tween.set_trans(Tween.TRANS_BACK)
@@ -129,16 +132,21 @@ func _fadeOut():
 	label_name.text = ""
 	label_text.text = ""
 	
-	tween = create_tween()
+	if(ballon_spawned == true):
+		tween = create_tween()
+		
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.set_ease(Tween.EASE_IN_OUT)
+		
+		tween.tween_property(dialogue, "scale", Vector2(0.9,0.0), 0.5)
+		await tween.parallel().tween_property(dialogue, "modulate:a", 0.0, 0.5).finished
+		tween.kill()
 	
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	
-	tween.tween_property(dialogue, "scale", Vector2(0.9,0.0), 0.5)
-	await tween.parallel().tween_property(dialogue, "modulate:a", 0.0, 0.5).finished
-	
-	tween.kill()
-	_fadeIn()
+	if no_spawn == false:
+		_fadeIn()
+	else:
+		no_spawn = false
+		ballon_spawned = false
 
 func _update_text():
 	if first_time == true:
