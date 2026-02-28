@@ -58,10 +58,10 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(0.75).timeout
 	if day < 2:
-		tax = 50
+		tax = 100
 		first_time = true
 	else:
-		tax = 50 + int(coin_day*0.2)
+		tax = 100 + int(coin_day*0.2)
 	_menu_spawn()
 	pass # Replace with function body.
 
@@ -192,7 +192,7 @@ func _update_text():
 		if(buy > -1):
 			_hud.have_item[buy] = 1
 		MusicScene.stop()
-		MusicScene.stream = preload("res://AUDIO/musica-gameplay.wav")
+		MusicScene.stream = preload("res://AUDIO/musica-gameplay.ogg")
 		_hud._reset_day()
 		
 	elif win == true:

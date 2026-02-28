@@ -19,7 +19,7 @@ var help_screen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	MusicScene.stream = preload("res://AUDIO/musica-gameplay.wav")
+	MusicScene.stream = preload("res://AUDIO/musica-gameplay.ogg")
 	MusicScene.play()
 	Fade.fade_out(0.0,1.5)
 	$day_texture.scale = Vector2(1,0)

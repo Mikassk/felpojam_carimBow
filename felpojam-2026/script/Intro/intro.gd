@@ -56,7 +56,7 @@ func _move_image():
 		await Fade.fade_in(1.0,0.8).finished
 		scene_trigger.scene_load("level")
 		MusicScene.stop()
-		MusicScene.stream = preload("res://AUDIO/musica-gameplay.wav")
+		MusicScene.stream = preload("res://AUDIO/musica-gameplay.ogg")
 		pass
 	
 	
