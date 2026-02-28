@@ -36,4 +36,8 @@ func _on_button_up():
 		
 		item_parent._check_pay()
 		
+		btnActive = false
 		btnPressed = false
+
+func _unlock():
+	btnActive = true

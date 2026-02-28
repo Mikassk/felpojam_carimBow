@@ -101,4 +101,5 @@ func _reset_price():
 	item_parent._fadeOut()
 	
 func block_button():
-	$item_button.canPress = false
+	print("Chamado 2")
+	price.btnActive = false

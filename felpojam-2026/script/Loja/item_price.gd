@@ -5,13 +5,16 @@ extends Button
 var item_parent: Node
 var item_granpa: Node
 
-var canPress: bool = true
+var btnActive: bool = true
+var btnPressed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	select.modulate.a = 0.0
 	
+	button_down.connect(_on_button_down)
 	button_up.connect(_on_button_up)
+	
 	item_parent = get_parent()
 	item_granpa = item_parent.get_parent()
 	
@@ -21,8 +24,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _on_button_down():
+	if btnActive == true:
+		btnPressed = true
+
 func _on_button_up():
-	if canPress:
+	if btnPressed == true:
 		$audio_bt.play()
 		if item_granpa.btn_id != self:
 			if item_granpa.btn_id != null:
@@ -36,3 +43,4 @@ func _on_button_up():
 			item_granpa.btn_id = null
 			select.modulate.a = 0.0
 			item_parent._reset_price()
+		btnPressed = false

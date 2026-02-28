@@ -17,7 +17,7 @@ class_name hud
 var current_combo = 0
 var previous_combo = -1
 
-var coin: int = 1000 
+var coin: int = 0
 var current_coin: int = 0
 var combo: int = 0
 var timer_total := 3
@@ -28,7 +28,7 @@ var frame_combo: int = 0
 var day_id: int = 0
 
 var create_loja
-var have_item: Array = [0, 0, 0, 0, 0, 1]
+var have_item: Array = [0, 0, 0, 0, 0, 0]
 
 signal coin_animation_finished
 # Called when the node enters the scene tree for the first time.
@@ -242,11 +242,9 @@ func _create_lojinha():
 	var loja_load = load("res://scenes/lojinha.tscn")
 	var aux_array: Array = []
 	
-	
-	for i in 6:
+	for i in 5:
 		if have_item[i] == 0:
 			aux_array.append(i)
-
 	
 	create_loja = loja_load.instantiate()
 	parent.add_child(create_loja)
@@ -267,4 +265,7 @@ func _reset_day():
 func _set_coin():
 	count_coin.text = str(coin)
 
-	
+func _call_credit():
+	create_loja.queue_free()
+	await Fade.fade_in(1.0,0.8).finished
+	scene_trigger.scene_load("credit")

@@ -28,6 +28,7 @@ var first_time: bool = false
 var no_tax: bool = false
 var no_money: bool = false
 var tax_pay: bool = false
+var win: bool = false
 
 var no_spawn: bool = false
 var ballon_spawned: bool = false
@@ -101,6 +102,7 @@ func _item_spawn():
 		
 		create_item = item_load.instantiate();
 		item_tree.add_child(create_item)
+		item_tree.children_list.append(create_item)
 		create_item.position = Vector2(int(pos_x[i]), pos_y)
 		create_item.item_index = i
 		
@@ -113,7 +115,7 @@ func _item_spawn():
 			create_item.spr_index = 6
 			create_item._set_sprite()
 		item_btn.modulate.a = 1.0
-		item_btn.btnActive = true
+		item_btn._unlock()
 
 func _spawn_ballon():
 	if obj_atual != obj_novo:
@@ -172,7 +174,6 @@ func _update_text():
 		await get_tree().create_timer(3.0).timeout
 		await Fade.fade_in(1.0,0.8).finished
 		scene_trigger.scene_load("initial_screen")
-		
 		#_hud._reset_day()
 		
 	elif no_money == true:
@@ -180,6 +181,7 @@ func _update_text():
 		label_name.text = ""
 		label_text.position = Vector2(-842.0, -300.0)
 		label_text.text = "Infelizmente você não tem dinheiro o suficiente para comprar isso."
+		item_btn._unlock()
 		
 	elif tax_pay == true:
 		label_name.text = ""
@@ -192,6 +194,14 @@ func _update_text():
 		MusicScene.stop()
 		MusicScene.stream = preload("res://AUDIO/musica-gameplay.wav")
 		_hud._reset_day()
+		
+	elif win == true:
+		label_name.text = ""
+		label_text.position = Vector2(-842.0, -350.0)
+		label_text.text = "Parabéns. A dívida foi quitada.\nReceba o gato de volta. Caso aconteça novamente não o devolverei em condições tão satisfatórias."
+		await get_tree().create_timer(7.0).timeout
+		_hud._call_credit()
+		
 	else:
 		label_name.text = obj_atual.item_name
 		label_text.position = Vector2(-842.0, -280.0)
@@ -201,6 +211,7 @@ func _check_pay():
 	var final_price: int = tax + price_total
 	
 	if coins < tax:
+		item_tree._block_btn()
 		no_tax = true
 		_fadeOut()
 	
@@ -209,9 +220,11 @@ func _check_pay():
 		_fadeOut()
 	
 	else:
-		if was_pressed == false:
-			was_pressed = true
-			_hud.coin -= final_price
-			_hud._set_coin()
+		item_tree._block_btn()
+		_hud.coin -= final_price
+		_hud._set_coin()
+		if buy != 6:
 			tax_pay = true
-			_fadeOut()
+		else:
+			win = true
+		_fadeOut()
