@@ -27,6 +27,7 @@ func _on_button_down():
 
 func _on_button_up():
 	if btnPressed == true:
+		$audio_bt.play()
 		tween = create_tween()
 		tween.set_trans(Tween.TRANS_BACK)
 		tween.set_ease(Tween.EASE_IN_OUT)

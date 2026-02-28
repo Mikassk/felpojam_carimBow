@@ -33,6 +33,7 @@ func start_anim():
 	animation_coin_hud()
 	
 func animation_coin_hud():
+	$audio_click.play()
 	var rand = randi_range(10,30)
 	for i in rand:
 		var coin = load("res://scenes/coins.tscn")
@@ -43,4 +44,5 @@ func animation_coin_hud():
 		var y_ = randi_range(-455,-447)
 		create_coin.change_position(x_,y_)
 	await get_tree().create_timer(0.5).timeout
+	$audio_coin_table.play()
 	hud.add_current_coin_to_coin()

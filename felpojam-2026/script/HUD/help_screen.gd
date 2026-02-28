@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _anim_background():
+	$audio.play()
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($Background,"scale:y",0.8,0.6)

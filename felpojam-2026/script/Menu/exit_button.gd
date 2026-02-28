@@ -1,6 +1,6 @@
 extends TextureButton
 var tween: Tween
-
+@export var audio: AudioStreamPlayer
 
 func _ready() -> void:
 	pivot_offset = size * Vector2(0.5,0.5)
@@ -14,6 +14,7 @@ func _on_button_down():
 	scale = Vector2(0.9,0.7)
 
 func _on_button_up():
+	audio.play()
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_SPRING)

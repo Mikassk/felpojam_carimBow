@@ -44,9 +44,9 @@ var was_pressed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicScene.play()
 	$loja_background.modulate.a = 0
 	randomize()
-	tax = 50 + int(coin_day*0.2)
 	
 	item_btn.modulate.a = 0.0
 	
@@ -57,7 +57,10 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(0.75).timeout
 	if day < 2:
+		tax = 50
 		first_time = true
+	else:
+		tax = 50 + int(coin_day*0.2)
 	_menu_spawn()
 	pass # Replace with function body.
 
@@ -66,12 +69,16 @@ func _process(delta: float) -> void:
 	pass
 	
 func _menu_spawn():
+	
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($loja_background, "modulate:a",0.3, 1.0)
 	tween.tween_property($moço_malvado, "position:x",-626, 0.5)
+	$audio_paper.play()
 	await tween.tween_property(menu, "scale", Vector2(1.0,1.0), 0.5).finished
+	
+	
 	label_loja.text = "Escolha um item:"
 	label_tax.text = "Taxa do dia = $" + str(tax)
 	if first_time == true:
@@ -157,11 +164,16 @@ func _update_text():
 	
 	elif no_tax == true:
 		no_tax = false
+		MusicScene.stop()
+		MusicScene.stream = preload("res://AUDIO/musica-gameover.ogg")
 		label_name.text = ""
 		label_text.position = Vector2(-842.0, -350.0)
 		label_text.text = "Infelizmente você não conseguiu o dinheiro da taxa. Pegarei meus carimbos de volta."
-		await get_tree().create_timer(2.0).timeout
-		print("game over")
+		await get_tree().create_timer(3.0).timeout
+		await Fade.fade_in(1.0,0.8).finished
+		scene_trigger.scene_load("initial_screen")
+		
+		#_hud._reset_day()
 		
 	elif no_money == true:
 		no_money = false
@@ -177,6 +189,8 @@ func _update_text():
 		await get_tree().create_timer(2.0).timeout
 		if(buy > -1):
 			_hud.have_item[buy] = 1
+		MusicScene.stop()
+		MusicScene.stream = preload("res://AUDIO/musica-gameplay.wav")
 		_hud._reset_day()
 	else:
 		label_name.text = obj_atual.item_name

@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 
 func _on_button_up():
 	if canPress:
+		$audio_bt.play()
 		if item_granpa.btn_id != self:
 			if item_granpa.btn_id != null:
 				item_granpa._reset_btn()

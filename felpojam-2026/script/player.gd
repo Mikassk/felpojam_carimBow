@@ -19,6 +19,7 @@ var can_pressed: bool = true
 var check_input: bool = true
 
 var frame_: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -55,7 +56,8 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("key_space"):
 		anim.frame = 0
 		anim.play("hand_stamp")
-		
+		if can_pressed == true:
+			$audio_stamp.play()
 		check_input = true
 		
 	
@@ -264,6 +266,7 @@ func check_answer():
 			else:
 				hud.add_combo(0)
 				error+=1
+				$audio_error.play()
 		key_pressed = ""
 		
 	

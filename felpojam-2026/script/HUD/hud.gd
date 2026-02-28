@@ -11,6 +11,11 @@ class_name hud
 @export var clock_day: Label
 @export var coin_on_table: AnimatedSprite2D
 @export var level: Node
+@export var audio_combo: AudioStreamPlayer
+
+
+var current_combo = 0
+var previous_combo = -1
 
 var coin: int = 1000 
 var current_coin: int = 0
@@ -23,7 +28,7 @@ var frame_combo: int = 0
 var day_id: int = 0
 
 var create_loja
-var have_item: Array = [0, 0, 0, 0, 0, 0]
+var have_item: Array = [0, 0, 0, 0, 0, 1]
 
 signal coin_animation_finished
 # Called when the node enters the scene tree for the first time.
@@ -101,16 +106,26 @@ func check_combo():
 	frame_combo = 0
 	if combo < 4:
 		frame_combo = 0
-	if combo >= 4 && combo < 8:
+		audio_combo.stream = preload("res://AUDIO/SFX/Combo/F.wav")
+	elif combo >= 4 && combo < 8:
 		frame_combo = 1
-	if combo >= 8 && combo < 12:
+		audio_combo.stream = preload("res://AUDIO/SFX/Combo/D.wav")
+	elif combo >= 8 && combo < 12:
 		frame_combo = 2
-	if combo >= 12 && combo < 18:
+		audio_combo.stream = preload("res://AUDIO/SFX/Combo/C.wav")
+	elif combo >= 12 && combo < 18:
 		frame_combo = 3
-	if combo >= 18 && combo < 25:
+		audio_combo.stream = preload("res://AUDIO/SFX/Combo/B.wav")
+	elif combo >= 18 && combo < 25:
 		frame_combo = 4
-	if combo >= 25:
+		audio_combo.stream = preload("res://AUDIO/SFX/Combo/A.wav")
+	elif combo >= 25:
 		frame_combo = 5
+		audio_combo.stream = preload("res://AUDIO/SFX/Combo/S.mp3")
+	current_combo = frame_combo
+	if previous_combo != current_combo:
+		previous_combo = current_combo
+		audio_combo.play()
 	animation.frame = frame_combo
 
 func add_coin(value: int):
@@ -160,7 +175,7 @@ func add_current_coin_to_coin():
 		count_coin.text = (str(coin))
 		await get_tree().create_timer(speed).timeout
 		
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	_create_lojinha()
 	#emit_signal("coin_animation_finished")
 	
@@ -220,6 +235,9 @@ func _get_coins():
 		_create_lojinha()
 		
 func _create_lojinha():
+	MusicScene.stop()
+	MusicScene.stream = preload("res://AUDIO/musica-shop.ogg")
+	
 	var parent = get_parent().get_node("popup")
 	var loja_load = load("res://scenes/lojinha.tscn")
 	var aux_array: Array = []

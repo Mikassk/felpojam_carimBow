@@ -1,7 +1,8 @@
 extends TextureButton
 var tween: Tween
-
-
+@export var audio: AudioStreamPlayer
+@export var bt: TextureButton
+var canpress: bool = true
 func _ready() -> void:
 	pivot_offset = size * Vector2(0.5,0.5)
 	
@@ -14,12 +15,16 @@ func _on_button_down():
 	scale = Vector2(0.9,0.7)
 
 func _on_button_up():
-	tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_SPRING)
-	
-	tween.tween_property(self,"scale",Vector2(1,1),0.25)
-	
-	await Fade.fade_in(1.0,0.8).finished
-	scene_trigger.scene_load("level")
+	if canpress:
+		canpress = false
+		bt.canpress = false
+		audio.play()
+		tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_SPRING)
+		
+		tween.tween_property(self,"scale",Vector2(1,1),0.25)
+		
+		await Fade.fade_in(1.0,0.8).finished
+		scene_trigger.scene_load("menu")
 	

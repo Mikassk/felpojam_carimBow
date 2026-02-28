@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	pass
 
 func animation():
+	$audio_coin.play()
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN)

@@ -64,15 +64,15 @@ func _set_text(index: int):
 		0:
 			item_name = "Cubo Estranho"
 			item_text = "Seu dinheiro rende mais: todo valor recebido é aumentado em 5%."
-			item_price = 600;
+			item_price = 2000;
 		1:
 			item_name = "Gema Esquisita"
 			item_text = "Ganhe um bônus de 20% sobre o total de moedas obtidas no dia."
-			item_price = 600;
+			item_price = 2500;
 		2:
 			item_name = "Retrato do Gato"
 			item_text = "Uma foto do seu gato, único efeito: te motivar ainda mais."
-			item_price = 250;
+			item_price = 350;
 		3:
 			item_name = "Lembrança Especial"
 			item_text = "Algo que lembra seu gato, talvez te motive a trabalhar mais."
@@ -80,7 +80,7 @@ func _set_text(index: int):
 		4:
 			item_name = "Flor Bonita"
 			item_text = "Ao errar, tem 10% de chance de manter o combo ativo."
-			item_price = 800;
+			item_price = 1300;
 		5:
 			item_name = "Ampulheta Magica"
 			item_text = "O dia de trabalho vai durar 25% a mais que o normal."
@@ -88,7 +88,7 @@ func _set_text(index: int):
 		6:
 			item_name = "Chave Especial"
 			item_text = "A chave para ter seu gato de volta."
-			item_price = 1000;
+			item_price = 20000;
 
 func _add_price():
 	item_parent.price_total = item_price

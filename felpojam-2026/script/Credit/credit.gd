@@ -6,6 +6,11 @@ var jobs: Array = ["Sonorização e Revisão", "Ilustração da HQ da introduç�
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicScene.stop()
+	MusicScene.stream = preload("res://AUDIO/musica-tela-inicial.wav")
+	Fade.fade_out(0.0,0.5)
+	await get_tree().create_timer(0.8).timeout
+	MusicScene.play()
 	spawn_names()
 	pass # Replace with function body.
 

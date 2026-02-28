@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ccmd31bnuqc2m"]
+
+[ext_resource type="AudioStream" uid="uid://dp4skyyo5klig" path="res://AUDIO/musica-tela-inicial.wav" id="1_ctqcx"]
+
+[node name="MusicScene" type="AudioStreamPlayer" unique_id=624224465]
+stream = ExtResource("1_ctqcx")
+volume_db = -20.0
+autoplay = true

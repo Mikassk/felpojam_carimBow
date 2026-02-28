@@ -9,9 +9,25 @@
 [ext_resource type="Texture2D" uid="uid://7kfsss6jkk80" path="res://sprite/GAMEPLAY/CREDITO/dado.png" id="7_7sdj7"]
 [ext_resource type="Texture2D" uid="uid://b63kdoqr24g4v" path="res://sprite/GAMEPLAY/CREDITO/dinheiro.png" id="8_xu8aw"]
 [ext_resource type="Texture2D" uid="uid://d0uc5gjo03lfj" path="res://sprite/GAMEPLAY/CREDITO/carimbo.png" id="9_js2w2"]
+[ext_resource type="Script" uid="uid://baein6h1g85ig" path="res://script/Credit/exit_button.gd" id="10_3426w"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_owgk4"]
 specular_color = Color(0.52091324, 0.3675109, 0.23628253, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1oyb0"]
+load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0pdtq"]
+load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7sdj7"]
+load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xu8aw"]
+load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_js2w2"]
+load_path = "res://.godot/imported/BOTAO_SAIR.png-fe27022a9a1f60c78d9a2a547906bb27.ctex"
 
 [node name="Control" type="Control" unique_id=1061549940]
 layout_mode = 3
@@ -77,6 +93,20 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("9_js2w2")
 
 [node name="labels" type="Node2D" parent="." unique_id=1599372345]
+
+[node name="exit_button" type="TextureButton" parent="." unique_id=243005631]
+layout_mode = 0
+offset_left = -130.0
+offset_top = 376.0
+offset_right = 127.0
+offset_bottom = 498.0
+pivot_offset = Vector2(129, 61)
+texture_normal = SubResource("CompressedTexture2D_1oyb0")
+texture_pressed = SubResource("CompressedTexture2D_0pdtq")
+texture_hover = SubResource("CompressedTexture2D_7sdj7")
+texture_disabled = SubResource("CompressedTexture2D_xu8aw")
+texture_focused = SubResource("CompressedTexture2D_js2w2")
+script = ExtResource("10_3426w")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=806604126]
 metadata/_edit_lock_ = true

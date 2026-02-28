@@ -19,6 +19,8 @@ var help_screen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicScene.stream = preload("res://AUDIO/musica-gameplay.wav")
+	MusicScene.play()
 	Fade.fade_out(0.0,1.5)
 	$day_texture.scale = Vector2(1,0)
 	$day_name.modulate.a = 0.0
@@ -132,12 +134,16 @@ func _go_away():
 		var y_ = 126
 		new_customer.final = true
 		new_customer.final_position(x_,y_)
+	player.can_pressed = false
+	$commands_paper.frame = 0
 	
 #reinicia a fase depois que acaba o tempo
 func restart_day(): 
+	
 	current_day += 1
 	Fade.fade_in(1.0,1.0)
 	await get_tree().create_timer(2.0).timeout
+	MusicScene.play()
 	index = 0
 	customer_array.clear()
 	current_customer.clear()
